@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>articulate - Social Innovation Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Colors */
+            --black: #1c1c1b;
+            --white: #ffffff;
+            --health: #ef9a5c;
+            --enterprise: #53aec9;
+            --places: #aac056;
+            --connectivity: #776cca;
+            --artivism: #e5608e;
+            
+            /* Secondary Colors */
+            --secondary1: #eb8e75;
+            --secondary2: #ea6548;
+            --secondary3: #f4cc74;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Header with Core Marque */
+        .header {
+            padding: 2rem;
+            background: var(--black);
+            position: relative;
+        }
+
+        .marque {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px; /* Exclusion zone */
+        }
+
+        /* Pillar Navigation */
+        .pillar-nav {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .pillar-button {
+            padding: 1.5rem;
+            border: none;
+            color: var(--white);
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: filter 0.3s;
+        }
+
+        .pillar-button:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Sections */
+        .pillar-section {
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: none;
+        }
+
+        .pillar-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Brand Typography */
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 65ch;
+        }
+
+        /* Brand Buttons */
+        .articulate-button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+
+        .articulate-button::after {
+            content: '→';
+            margin-left: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Organic Shapes */
+        .organic-shape {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, 10px); }
+            50% { transform: translate(-10px, 15px); }
+            75% { transform: translate(5px, -5px); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="articulate-marque.svg" alt="articulate logo" class="marque">
+    </header>
+
+    <nav class="pillar-nav">
+        <button class="pillar-button" style="background: var(--health);" data-section="health">Health & Wellbeing</button>
+        <button class="pillar-button" style="background: var(--enterprise);" data-section="enterprise">Employability</button>
+        <button class="pillar-button" style="background: var(--places);" data-section="places">Places & Spaces</button>
+        <button class="pillar-button" style="background: var(--connectivity);" data-section="connectivity">Connectivity</button>
+        <button class="pillar-button" style="background: var(--artivism);" data-section="artivism">Artivism</button>
+    </nav>
+
+    <main>
+        <section id="health" class="pillar-section" style="background: var(--health);">
+            <h1>Health & Wellbeing Initiatives</h1>
+            <p>Creating sustainable health solutions through community engagement...</p>
+            <button class="articulate-button" style="background: var(--secondary1);">Learn More →</button>
+        </section>
+
+        <!-- Repeat sections for other pillars -->
+    </main>
+
+    <script>
+        // Pillar Navigation System
+        document.querySelectorAll('.pillar-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active classes
+                document.querySelectorAll('.pillar-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const sectionId = button.dataset.section;
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Update URL
+                window.location.hash = sectionId;
+            });
+        });
+
+        // Initialize first section
+        document.querySelector('.pillar-button').click();
+
+        // Generate Organic Shapes
+        function createOrganicShapes() {
+            const shapes = ['M10 80 Q 95 10 180 80', 'M50 10 Q 20 90 150 50', 'M30 30 Q 100 100 170 30'];
+            const colors = [var(--secondary1), var(--secondary2), var(--secondary3)];
+            
+            shapes.forEach((path, index) => {
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("viewBox", "0 0 200 100");
+                svg.innerHTML = `<path d="${path}" fill="${colors[index]}" />`;
+                svg.classList.add('organic-shape');
+                document.body.appendChild(svg);
+            });
+        }
+        createOrganicShapes();
+    </script>
+</body>
+</html>
