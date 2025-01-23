@@ -3,100 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modding Sanctuary</title>
+    <title>Modding Nexus</title>
     <style>
         :root {
-            --sidebar: #2c2f33;
+            --nav-bg: #2d2d2d;
             --accent: #7289da;
-            --background: #f9f9f9;
+            --text: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', system-ui;
             display: grid;
             grid-template-columns: 250px 1fr;
             min-height: 100vh;
-            background: var(--background);
+            background: #1a1a1a;
+            color: var(--text);
         }
 
         /* Left Navigation */
         .sidebar {
-            background: var(--sidebar);
-            padding: 20px;
+            background: var(--nav-bg);
+            padding: 2rem;
             position: fixed;
             width: 250px;
             height: 100%;
+            border-right: 3px solid var(--accent);
         }
 
-        .logo {
-            width: 180px;
-            margin-bottom: 30px;
+        .nav-logo {
+            width: 100%;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 5px var(--accent));
         }
 
         .nav-links {
             list-style: none;
-            padding: 0;
         }
 
-        .nav-links li {
-            margin: 10px 0;
+        .nav-link {
+            margin: 1rem 0;
+            transition: transform 0.3s;
         }
 
-        .nav-links a {
-            color: white;
+        .nav-link a {
+            color: var(--text);
             text-decoration: none;
-            padding: 12px;
+            font-size: 1.1rem;
+            padding: 0.8rem;
             display: block;
-            border-radius: 4px;
-            transition: all 0.3s;
+            border-radius: 5px;
         }
 
-        .nav-links a:hover {
+        .nav-link a:hover {
             background: var(--accent);
         }
 
         /* Main Content */
         .main-content {
-            padding: 40px;
+            padding: 3rem;
             max-width: 1200px;
         }
 
-        /* Wololo-style Card Grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        /* Dynamic Content Cards */
+        .content-card {
+            background: #252525;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid #3d3d3d;
         }
 
-        .card {
-            background: white;
+        .card-header {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* PS4 Tools Grid */
+        .firmware-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .firmware-card {
+            background: #333;
+            padding: 1.5rem;
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid var(--accent);
         }
 
-        .card h3 {
-            margin-top: 0;
-            color: var(--accent);
+        /* Shop Items */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .card a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* Featured Section */
-        .featured {
-            background: var(--accent);
-            color: white;
-            padding: 30px;
+        .shop-item {
+            background: #252525;
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 40px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-tag {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin: 1rem 0;
         }
 
         /* Responsive Design */
@@ -104,120 +130,151 @@
             body {
                 grid-template-columns: 1fr;
             }
-            
+
             .sidebar {
                 position: relative;
                 width: 100%;
                 height: auto;
+                border-right: none;
+                border-bottom: 3px solid var(--accent);
             }
-            
+
             .main-content {
-                padding: 20px;
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Left Navigation -->
+    <!-- Navigation -->
     <nav class="sidebar">
-        <img src="https://i.ibb.co/0jQ7ZtG/modding-logo.png" alt="Modding Sanctuary" class="logo">
+        <img src="https://i.ibb.co/0jQ7ZtG/modding-logo.png" alt="Modding Nexus" class="nav-logo">
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#ps4-jailbreak">PS4 Jailbreak</a></li>
-            <li><a href="#tools">Modding Tools</a></li>
-            <li><a href="#shop">Modded Services</a></li>
-            <li><a href="#tutorials">Tutorials</a></li>
-            <li><a href="#forum">Community</a></li>
+            <li class="nav-link"><a href="#home">🏠 Home</a></li>
+            <li class="nav-link"><a href="#ps4">🎮 PS4 Jailbreak</a></li>
+            <li class="nav-link"><a href="#shop">💎 Modded Services</a></li>
+            <li class="nav-link"><a href="#resources">📚 Resources</a></li>
+            <li class="nav-link"><a href="#contact">📧 Contact</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Featured Section -->
-        <div class="featured">
-            <h2>🔥 Latest Updates</h2>
-            <p>GoldHEN v2.3 released with improved stability | New PS4 9.00 exploit research</p>
-        </div>
-
-        <!-- PS4 Jailbreak Section -->
-        <section id="ps4-jailbreak">
-            <h2>🔓 PS4 Jailbreak Resources</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Firmware 9.00 Guide</h3>
-                    <p>Complete walkthrough for 9.00 jailbreak with PPPwn exploit</p>
-                    <a href="#">Read Guide →</a>
+        <!-- Home Section -->
+        <section id="home" class="content-card">
+            <h1 class="card-header">Welcome to Modding Nexus</h1>
+            <p>Your ultimate resource for console modding, game customization, and premium services.</p>
+            <div class="firmware-grid" style="margin-top: 2rem;">
+                <div class="firmware-card">
+                    <h3>Latest Updates</h3>
+                    <p>• GoldHEN 2.3 Released<br>
+                    • New 9.00 Exploit Research<br>
+                    • PS5 Kernel Access Progress</p>
                 </div>
-                <div class="card">
-                    <h3>Essential Payloads</h3>
-                    <ul>
-                        <li><a href="https://github.com/GoldHEN/GoldHEN">GoldHEN 2.3</a></li>
-                        <li><a href="https://github.com/OpenOrbis/mira-project">MIRA Project</a></li>
-                        <li><a href="https://github.com/stooged/AppToUsb-405">AppToUSB</a></li>
-                    </ul>
+                <div class="firmware-card">
+                    <h3>Featured Tool</h3>
+                    <p>MIRA Project - Advanced kernel-level toolkit for PS4 modding</p>
+                    <a href="https://github.com/OpenOrbis/mira-project" style="color: var(--accent);">GitHub →</a>
                 </div>
             </div>
         </section>
 
-        <!-- Modding Tools Section -->
-        <section id="tools" style="margin-top: 50px;">
-            <h2>🛠️ Ultimate Modding Toolkit</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Game Modding</h3>
+        <!-- PS4 Jailbreak Section -->
+        <section id="ps4" class="content-card">
+            <h2 class="card-header">PS4 Jailbreak Toolkit</h2>
+            <div class="firmware-grid">
+                <div class="firmware-card">
+                    <h3>4.05 Tools</h3>
                     <ul>
-                        <li><a href="https://github.com/iMCSx/GSC-Studios">GSC Studio</a></li>
-                        <li><a href="https://github.com/Nefarius/DS4Windows">DS4Windows</a></li>
-                        <li><a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphere (Switch)</a></li>
+                        <li><a href="https://github.com/stooged/AppToUsb-405">AppToUSB v17</a></li>
+                        <li><a href="https://github.com/xvortex/ps4-hen-vtx/tree/1.3">HEN v1.3</a></li>
+                        <li><a href="https://github.com/Cryptogenic/PS4-4.05-Kernel-Exploit">Original Exploit</a></li>
                     </ul>
                 </div>
-                <div class="card">
-                    <h3>Reverse Engineering</h3>
+                <div class="firmware-card">
+                    <h3>5.05 Essentials</h3>
                     <ul>
-                        <li><a href="https://github.com/NationalSecurityAgency/ghidra">Ghidra</a></li>
-                        <li><a href="https://github.com/x64dbg/x64dbg">x64dbg</a></li>
-                        <li><a href="https://github.com/cheat-engine/cheat-engine">Cheat Engine</a></li>
+                        <li><a href="https://github.com/stooged/AppToUsb-50X">AppToUSB v3</a></li>
+                        <li><a href="https://github.com/xvortex/ps4-dumper-vtx">Dumper v1.8</a></li>
+                        <li><a href="https://github.com/valentinbreiz/PS4-Linux-Loader/tree/5.05">Linux Loader</a></li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Shop Section -->
-        <section id="shop" style="margin-top: 50px;">
-            <h2>💎 Premium Services</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>BO3 Modded Accounts</h3>
-                    <ul>
-                        <li>Prestige 9999 - £15</li>
-                        <li>Unlimited DM - £25</li>
-                        <li>Custom Clantag - £5</li>
-                    </ul>
-                    <a href="#">Order Now →</a>
+        <section id="shop" class="content-card">
+            <h2 class="card-header">Premium Services</h2>
+            <div class="shop-grid">
+                <div class="shop-item">
+                    <h3>BO3 Modded Account</h3>
+                    <p>Prestige 9999<br>Unlock All<br>Custom Classes</p>
+                    <div class="price-tag">£15</div>
+                    <button style="background: var(--accent); border: none; padding: 0.8rem 2rem; border-radius: 5px; cursor: pointer;">Buy Now</button>
                 </div>
-                <div class="card">
-                    <h3>Custom Modding</h3>
-                    <ul>
-                        <li>Console Jailbreaking - £50</li>
-                        <li>Game Mod Creation - £100</li>
-                        <li>Private Training - £75/h</li>
-                    </ul>
-                    <a href="#">Contact Us →</a>
+                <div class="shop-item">
+                    <h3>Advanced Warfare</h3>
+                    <p>Max Rank<br>Modded Clantag<br>Unlimited Resources</p>
+                    <div class="price-tag">£10</div>
+                    <button style="background: var(--accent); border: none; padding: 0.8rem 2rem; border-radius: 5px; cursor: pointer;">Buy Now</button>
                 </div>
             </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="content-card">
+            <h2 class="card-header">Community Resources</h2>
+            <div class="firmware-grid">
+                <div class="firmware-card">
+                    <h3>Communities</h3>
+                    <ul>
+                        <li><a href="https://www.psxhax.com/">PSXHAX</a></li>
+                        <li><a href="https://wololo.net/">Wololo.net</a></li>
+                        <li><a href="https://www.reddit.com/r/ps4homebrew">r/ps4homebrew</a></li>
+                    </ul>
+                </div>
+                <div class="firmware-card">
+                    <h3>GitHub Repos</h3>
+                    <ul>
+                        <li><a href="https://github.com/GoldHEN/GoldHEN">GoldHEN</a></li>
+                        <li><a href="https://github.com/OpenOrbis/mira-project">MIRA Project</a></li>
+                        <li><a href="https://github.com/stooged">Stooged's Tools</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-card">
+            <h2 class="card-header">Get in Touch</h2>
+            <form style="display: grid; gap: 1rem;">
+                <input type="text" placeholder="Name" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;">
+                <input type="email" placeholder="Email" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;">
+                <textarea rows="4" placeholder="Message" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;"></textarea>
+                <button type="submit" style="background: var(--accent); color: white; padding: 1rem; border: none; border-radius: 5px; cursor: pointer;">Send Message</button>
+            </form>
         </section>
     </main>
 
     <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Dynamic Content Loading
+        document.querySelectorAll('.nav-link a').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                const targetId = link.getAttribute('href').substring(1);
+                document.querySelectorAll('.content-card').forEach(card => {
+                    card.style.display = 'none';
                 });
+                document.getElementById(targetId).style.display = 'block';
+                window.scrollTo(0, 0);
             });
         });
+
+        // Show home section by default
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.style.display = 'none';
+        });
+        document.getElementById('home').style.display = 'block';
     </script>
 </body>
 </html>
