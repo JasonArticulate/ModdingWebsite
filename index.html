@@ -1,215 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Modding OS</title>
-    <style>
-        :root {
-            --matrix-green: #00ff88;
-            --neon-purple: #bc13fe;
-            --cyber-yellow: #ffd300;
-            --hacker-bg: #000;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modding Pro - Resources & Services</title>
+  <style>
+    :root {
+      --primary-color: #0056b3;
+      --text-color: #1a1a1a;
+      --background-color: #ffffff;
+      --nav-bg: #f8f9fa;
+      --accent: #ff5722;
+    }
 
-        body {
-            margin: 0;
-            background: var(--hacker-bg);
-            color: var(--matrix-green);
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui;
+      color: var(--text-color);
+      background: var(--background-color);
+      line-height: 1.6;
+    }
 
-        .cyber-terminal {
-            padding: 20px;
-            height: 100vh;
-            overflow-y: auto;
-        }
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
 
-        .input-line {
-            display: flex;
-            gap: 10px;
-            margin: 20px 0;
-        }
+    /* Left Navigation */
+    nav {
+      background: var(--nav-bg);
+      padding: 1rem;
+      border-right: 1px solid #dee2e6;
+    }
 
-        #command-input {
-            background: none;
-            border: 1px solid var(--matrix-green);
-            color: var(--matrix-green);
-            padding: 10px;
-            flex-grow: 1;
-        }
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
+    .nav-item a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
 
-        .tool-card {
-            border: 1px solid var(--neon-purple);
-            padding: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+    .nav-item a:hover,
+    .nav-item a:focus {
+      background: #e9ecef;
+      outline: 2px solid var(--primary-color);
+    }
 
-        .tool-card:hover {
-            background: rgba(188, 19, 254, 0.1);
-        }
-    </style>
+    .nav-item a[aria-current="page"] {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h1, h2 {
+      color: var(--primary-color);
+    }
+
+    /* Modding Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .tool-card {
+      background: white;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .tool-card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .tool-card a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Shop Section */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .shop-item {
+      background: white;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .shop-item h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .price {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .shop-item button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Accessibility Controls */
+    .accessibility-bar {
+      background: #333;
+      padding: 0.5rem;
+      text-align: right;
+    }
+
+    .accessibility-btn {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* High Contrast Mode */
+    .high-contrast {
+      --text-color: #000000;
+      --background-color: #ffffff;
+      --nav-bg: #eeeeee;
+    }
+
+    /* Print Styles */
+    @media print {
+      .container {
+        display: block;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="cyber-terminal">
-        <!-- Matrix Rain Container -->
-        <div id="matrix-canvas" style="position:fixed;z-index:-1"></div>
+  <div class="accessibility-bar">
+    <button class="accessibility-btn" onclick="toggleContrast()">High Contrast</button>
+    <button class="accessibility-btn" onclick="increaseTextSize()">A+</button>
+    <button class="accessibility-btn" onclick="resetTextSize()">A-</button>
+  </div>
 
-        <!-- Live Modding Interface -->
-        <h1>▲ NEXUS MODDING OS v3.14 ▲</h1>
+  <div class="container">
+    <nav aria-label="Table of Contents">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#welcome" aria-current="page">Welcome</a></li>
+        <li class="nav-item"><a href="#ps4-tools">PS4 Tools</a></li>
+        <li class="nav-item"><a href="#shop">Modded Services</a></li>
+        <li class="nav-item"><a href="#resources">Resources</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Welcome Section -->
+      <section id="welcome" tabindex="-1" aria-labelledby="welcome-heading">
+        <h1 id="welcome-heading">Welcome to Modding Pro</h1>
+        <p>Your ultimate resource for PS4 jailbreaking, game modding, and premium services.</p>
+      </section>
+
+      <!-- PS4 Tools Section -->
+      <section id="ps4-tools" hidden tabindex="-1" aria-labelledby="ps4-tools-heading">
+        <h2 id="ps4-tools-heading">PS4 Jailbreak Toolkit</h2>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h3>GoldHEN 2.3</h3>
+            <p>Ultimate PS4 Jailbreak Payload</p>
+            <a href="https://github.com/GoldHEN/GoldHEN/releases" target="_blank">Download</a>
+          </div>
+          <div class="tool-card">
+            <h3>MIRA Project</h3>
+            <p>Kernel-level Exploitation Framework</p>
+            <a href="https://github.com/OpenOrbis/mira-project" target="_blank">Download</a>
+          </div>
+          <div class="tool-card">
+            <h3>FTP-1337</h3>
+            <p>Remote File Transfer Protocol</p>
+            <a href="https://github.com/xvortex/ps4-ftp-vtx" target="_blank">Download</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shop Section -->
+      <section id="shop" hidden tabindex="-1" aria-labelledby="shop-heading">
+        <h2 id="shop-heading">Premium Services</h2>
+        <div class="shop-grid">
+          <div class="shop-item">
+            <h3>BO3 Modded Account</h3>
+            <ul>
+              <li>Prestige 9999</li>
+              <li>All Weapons Unlocked</li>
+              <li>Custom Classes</li>
+            </ul>
+            <div class="price">£15</div>
+            <button>Purchase Now</button>
+          </div>
+          <div class="shop-item">
+            <h3>Full Jailbreak Service</h3>
+            <ul>
+              <li>PS4 9.00 Jailbreak</li>
+              <li>Homebrew Setup</li>
+              <li>1-Year Support</li>
+            </ul>
+            <div class="price">£50</div>
+            <button>Purchase Now</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section id="resources" hidden tabindex="-1" aria-labelledby="resources-heading">
+        <h2 id="resources-heading">Learning Resources</h2>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h3>Jailbreak Guide</h3>
+            <p>Step-by-Step PS4 9.00 Tutorial</p>
+            <a href="#guide">Read Guide</a>
+          </div>
+          <div class="tool-card">
+            <h3>Modding Bible</h3>
+            <p>400+ Page PDF Resource</p>
+            <a href="#bible">Download</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Accessibility Features
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function increaseTextSize() {
+      document.body.style.fontSize = '1.1em';
+    }
+
+    function resetTextSize() {
+      document.body.style.fontSize = '1em';
+    }
+
+    // Navigation Management
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.hash);
         
-        <div class="tool-grid" id="ps4-tools">
-            <!-- Tools will auto-populate -->
-        </div>
-
-        <div class="input-line">
-            <span>></span>
-            <input type="text" id="command-input" placeholder="access_root --firmware 9.00" autofocus>
-        </div>
-
-        <div id="output"></div>
-    </div>
-
-<script>
-// WORKING PS4 TOOLKIT
-const ps4Tools = [
-    {
-        name: "GoldHEN 2.3",
-        command: "install_goldhen",
-        description: "Ultimate 9.00 Jailbreak Payload",
-        link: "https://github.com/GoldHEN/GoldHEN/releases"
-    },
-    {
-        name: "MIRA Project",
-        command: "load_mira",
-        description: "Kernel-level Exploitation Framework",
-        link: "https://github.com/OpenOrbis/mira-project"
-    },
-    {
-        name: "FTP-1337",
-        command: "start_ftp",
-        description: "Remote File Transfer Protocol",
-        link: "https://github.com/xvortex/ps4-ftp-vtx"
-    }
-];
-
-// ACTIVE MODDING AI
-class ModdingAI {
-    constructor() {
-        this.commands = {
-            install_goldhen: () => this.#goldhenInstall(),
-            load_mira: () => window.open(ps4Tools[1].link, '_blank'),
-            start_ftp: () => this.#startFTPServer(),
-            clear: () => (output.innerHTML = ''),
-            help: () => this.#showHelp()
-        };
-    }
-
-    #goldhenInstall() {
-        this.#printTerminal(`
-[+] Initializing GoldHEN payload...
-[!] WARNING: Disconnect from PSN
-[✓] USB Device Mounted: /dev/rh0
-[✓] Exploit Triggered: CVE-2024-1337
-[✓] GoldHEN 2.3 Active - Welcome to Freedom!
-        `);
-    }
-
-    #startFTPServer() {
-        this.#printTerminal(`
-[+] Starting FTP Service...
-[✓] Listening on 192.168.1.133:1337
-[!] Credentials: root/toor
-[✓] Connect with: ftp://root:toor@192.168.1.133:1337
-        `);
-    }
-
-    #showHelp() {
-        this.#printTerminal(`
-▲ Available Commands:
-→ install_goldhen   - Load GoldHEN jailbreak
-→ load_mira         - Open MIRA Project GitHub
-→ start_ftp         - Launch FTP server
-→ clear             - Reset terminal
-→ help              - Show this message
-        `);
-    }
-
-    #printTerminal(text) {
-        output.innerHTML += `<div style="margin:10px 0">${text}</div>`;
-    }
-
-    execute(command) {
-        const cmd = command.trim();
-        if(this.commands[cmd]) {
-            this.commands[cmd]();
-        } else {
-            this.#printTerminal(`[X] Unknown command: ${cmd}`);
-        }
-    }
-}
-
-// INITIALIZE SYSTEM
-const ai = new ModdingAI();
-const output = document.getElementById('output');
-const commandInput = document.getElementById('command-input');
-
-// Populate PS4 Tools
-const toolsGrid = document.getElementById('ps4-tools');
-ps4Tools.forEach(tool => {
-    const card = document.createElement('div');
-    card.className = 'tool-card';
-    card.innerHTML = `
-        <h3>${tool.name}</h3>
-        <p>${tool.description}</p>
-        <small>> ${tool.command}</small>
-    `;
-    card.onclick = () => ai.execute(tool.command);
-    toolsGrid.appendChild(card);
-});
-
-// Command Input Handler
-commandInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter') {
-        ai.execute(e.target.value);
-        e.target.value = '';
-    }
-});
-
-// Matrix Rain Effect
-const canvas = document.createElement('canvas');
-const matrix = document.getElementById('matrix-canvas');
-matrix.appendChild(canvas);
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
-const drops = Array(Math.floor(canvas.width/10)).fill(0);
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0,0,0,0.05)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = var(--matrix-green);
-
-    drops.forEach((pos, i) => {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(char, i*10, pos);
-        pos > canvas.height || Math.random() > 0.95 ? drops[i] = 0 : drops[i] += 10;
+        // Hide all sections
+        document.querySelectorAll('section').forEach(section => {
+          section.hidden = true;
+        });
+        
+        // Show target section
+        target.hidden = false;
+        target.focus();
+        
+        // Update ARIA current
+        document.querySelectorAll('nav a').forEach(a => {
+          a.setAttribute('aria-current', 'false');
+        });
+        link.setAttribute('aria-current', 'page');
+      });
     });
-}
 
-setInterval(drawMatrix, 50);
-</script>
+    // Initialize first section
+    document.getElementById('welcome').hidden = false;
+  </script>
 </body>
 </html>
