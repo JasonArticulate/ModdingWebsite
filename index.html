@@ -3,304 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEX MODDING | Premium PS4/PS5 Modded Accounts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <title>The Modder's Grimoire</title>
     <style>
         :root {
-            --neon-cyan: #00f3ff;
-            --hacker-red: #ff003c;
-            --cyber-purple: #bc13fe;
-            --dark-bg: #0a0a12;
-            --card-bg: #1a1a2f;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
+            --parchment: #f0e6d3;
+            --ink: #2a2a2a;
+            --blood: #8b0000;
         }
 
         body {
-            background: var(--dark-bg);
-            color: var(--neon-cyan);
+            font-family: 'Courier New', monospace;
+            background: var(--parchment);
+            color: var(--ink);
             line-height: 1.6;
-        }
-
-        /* Cyber Header */
-        .cyber-header {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-bottom: 3px solid var(--cyber-purple);
-            margin-bottom: 3rem;
-        }
-
-        .cyber-header h1 {
-            font-size: 2.5rem;
-            text-shadow: 0 0 20px var(--neon-cyan);
-        }
-
-        /* Package Grid */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-            max-width: 1500px;
-            margin: 0 auto;
-        }
-
-        /* Package Card */
-        .package-card {
-            background: var(--card-bg);
-            border: 2px solid var(--cyber-purple);
-            border-radius: 8px;
-            padding: 1.5rem;
+            margin: 0;
+            padding: 40px;
             position: relative;
-            overflow: hidden;
-            transition: transform 0.3s;
         }
 
-        .package-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
+        /* Book Layout */
+        .book-margin {
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 15px solid #5d4a30;
+            padding: 0 40px;
+            min-height: 100vh;
         }
 
-        .package-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--hacker-red);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transform: rotate(15deg);
-            font-size: 0.9rem;
-        }
-
-        .package-title {
-            color: var(--neon-cyan);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--cyber-purple);
-            padding-bottom: 0.5rem;
-        }
-
-        .features-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .game-mode {
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 6px;
-        }
-
-        .price-tag {
-            text-align: center;
-            font-size: 1.8rem;
-            color: var(--hacker-red);
-            margin: 1.5rem 0;
-            text-shadow: 0 0 15px var(--hacker-red);
-        }
-
-        .buy-button {
-            background: linear-gradient(45deg, var(--cyber-purple), var(--hacker-red));
-            color: white;
-            border: none;
-            padding: 1rem;
-            width: 100%;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        .buy-button:hover {
-            opacity: 0.9;
-            letter-spacing: 1px;
-        }
-
-        /* Security Section */
-        .security-disclaimer {
-            max-width: 1500px;
-            margin: 3rem auto;
-            padding: 2rem;
-            border: 2px solid var(--hacker-red);
-            border-radius: 8px;
-            background: rgba(255, 0, 60, 0.05);
-        }
-
-        .requirements-list {
-            columns: 2;
-            margin: 1.5rem 0;
-        }
-
-        /* Floating Cart */
-        .cart-floater {
+        /* Table of Contents */
+        .toc {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--card-bg);
-            padding: 1rem;
-            border: 2px solid var(--cyber-purple);
-            border-radius: 8px;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--parchment);
+            border: 2px solid var(--ink);
+            padding: 20px;
+        }
+
+        .toc a {
+            color: var(--blood);
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        /* Chapters */
+        .chapter {
+            margin: 40px 0;
+            border-bottom: 1px dashed var(--ink);
+            padding-bottom: 30px;
+        }
+
+        /* Special Elements */
+        .codex {
+            background: #fff;
+            border: 3px double var(--ink);
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .warning {
+            border-left: 5px solid var(--blood);
+            padding: 10px;
+            background: #ffebee;
+        }
+
+        .tool-list {
+            columns: 2;
+        }
+
+        /* Shop Section */
+        .offer-box {
+            background: #000;
+            color: #0f0;
+            border: 3px solid #0f0;
+            padding: 20px;
+            font-family: 'VT323', monospace;
+        }
+
+        .offer-box h3 {
+            color: #0f0;
+        }
+
+        .offer-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offer-box li {
+            margin: 10px 0;
+        }
+
+        .offer-box button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .toc {
+                position: static;
+                transform: none;
+                margin-bottom: 30px;
+            }
+            
+            .book-margin {
+                padding: 0 20px;
+                border-left: 5px solid #5d4a30;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="cyber-header">
-        <h1>🔥 DEX MODDING SERVICES 🔥</h1>
-        <p>24-48 Hour Delivery • Secure Transactions • Premium Mods</p>
-    </header>
+    <div class="book-margin">
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h2>Codex Contents</h2>
+            <a href="#arcane">Arcane Knowledge</a>
+            <a href="#tools">Blacksmith's Tools</a>
+            <a href="#alchemy">Reverse Alchemy</a>
+            <a href="#market">Black Market</a>
+            <a href="#forbidden">Forbidden Arts</a>
+        </nav>
 
-    <div class="package-grid">
-        <!-- Black Ops 3 Packages -->
-        <div class="package-card">
-            <div class="package-badge">MOST POPULAR</div>
-            <h2 class="package-title">BLACK OPS 3 - PACKAGE 1</h2>
-            <div class="features-columns">
-                <div class="game-mode">
-                    <h3>🎮 Multiplayer</h3>
-                    <ul>
-                        <li>Prestige 9999 Level 35</li>
-                        <li>Modded Classes</li>
-                        <li>Full Unlock All</li>
-                        <li>Green Clan Tag</li>
-                    </ul>
-                </div>
-                <div class="game-mode">
-                    <h3>🧟 Zombies</h3>
-                    <ul>
-                        <li>Prestige 12 Level 35</li>
-                        <li>All Easter Eggs Complete</li>
-                        <li>Unlimited Death Machine</li>
-                        <li>Unreleased Camos</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="price-tag">£15.00</div>
-            <button class="buy-button" data-package="bo3-p1">BUY NOW →</button>
+        <!-- Cover Page -->
+        <div class="chapter" style="text-align: center; margin-top: 100px;">
+            <h1 style="font-size: 3em; border-bottom: none;">THE MODDER'S GRIMOIRE</h1>
+            <p style="font-family: 'VT323', monospace;">Compiled from the depths of UnknownCheats.me and shadowed YouTube channels</p>
         </div>
 
-        <!-- Black Ops 3 Package 2 -->
-        <div class="package-card">
-            <h2 class="package-title">BLACK OPS 3 - PACKAGE 2</h2>
-            <div class="features-columns">
-                <div class="game-mode">
-                    <h3>🎮 Multiplayer</h3>
-                    <ul>
-                        <li>Prestige 15 Level 55</li>
-                        <li>GodMode Classes</li>
-                        <li>Blue Name</li>
-                        <li>Full Unlock All</li>
-                    </ul>
-                </div>
-                <div class="game-mode">
-                    <h3>🧟 Zombies</h3>
-                    <ul>
-                        <li>Level 1,000</li>
-                        <li>All Easter Eggs Complete</li>
-                        <li>Unlimited Beast Mode</li>
-                        <li>Cyan Clan Tag</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="price-tag">£10.00</div>
-            <button class="buy-button" data-package="bo3-p2">BUY NOW →</button>
-        </div>
-
-        <!-- Add remaining packages following same structure -->
-
-        <!-- Liquid Divinium Package -->
-        <div class="package-card">
-            <h2 class="package-title">LIQUID DIVINIUM PACKAGES</h2>
-            <div class="features-columns">
-                <div class="game-mode">
-                    <h3>💎 Quantities</h3>
-                    <ul>
-                        <li>100K - £5</li>
-                        <li>500K - £10</li>
-                        <li>1 Million - £20</li>
-                    </ul>
-                </div>
-                <div class="game-mode">
-                    <h3>🧟 Zombies Bonus</h3>
-                    <ul>
-                        <li>5x Each Gumball</li>
-                        <li>No Stats Transfer</li>
-                        <li>+£5 Addon</li>
-                    </ul>
-                </div>
-            </div>
-            <button class="buy-button" data-package="liquid">SELECT →</button>
-        </div>
-
-        <!-- Custom Avatars -->
-        <div class="package-card">
-            <h2 class="package-title">CUSTOM PROFILE AVATARS</h2>
-            <div class="game-mode">
+        <!-- Chapter 1: Basics -->
+        <div class="chapter" id="arcane">
+            <h2>Chapter I: Arcane Knowledge</h2>
+            <div class="codex">
+                <h3>↯ What is Modding?</h3>
+                <p>The art of bending reality to your will through:</p>
                 <ul>
-                    <li>Full Custom Design</li>
-                    <li>PS4/PS5 Compatible</li>
-                    <li>24hr Turnaround</li>
+                    <li>Memory injection (Cheat Engine)</li>
+                    <li>Binary alchemy (Hex editing)</li>
+                    <li>Script sorcery (Lua/Python)</li>
+                </ul>
+                
+                <div class="warning">
+                    ⚠️ Warning: Modding may anger the DRM gods
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 2: Tools -->
+        <div class="chapter" id="tools">
+            <h2>Chapter II: Blacksmith's Tools</h2>
+            <div class="tool-list">
+                <h3>Essential Implements:</h3>
+                <ul>
+                    <li>Cheat Engine (Memory forge)</li>
+                    <li>IDA Pro (Disassembly anvil)</li>
+                    <li>Frida (Dynamic spellcasting)</li>
+                    <li>010 Editor (Binary telescope)</li>
+                    <li>Process Hacker (Soul observer)</li>
                 </ul>
             </div>
-            <div class="price-tag">£2.00 Each</div>
-            <button class="buy-button" data-package="avatars">ORDER →</button>
+            
+            <!-- Embedded YouTube Tutorial -->
+            <div class="codex">
+                <h3>↪ Initiation Rite (Tutorial)</h3>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
 
-    <div class="security-disclaimer">
-        <h2>🔒 SECURITY & PROCESS</h2>
-        <div class="requirements-list">
-            <ul>
-                <li>🔗 Account Linkage Required</li>
-                <li>📧 Email/Password or PSN Login Code</li>
-                <li>💳 PayPal GBP Only</li>
-                <li>⏱ 24-48 Hour Delivery</li>
-                <li>📦 Bundle Discounts Available</li>
-                <li>🛡 100% Transaction Protection</li>
-            </ul>
+        <!-- Chapter 3: Reverse Engineering -->
+        <div class="chapter" id="alchemy">
+            <h2>Chapter III: Reverse Alchemy</h2>
+            <pre style="background: #000; color: #0f0; padding: 15px;">
+// Sample Memory Injection Spell
+void immortality() {
+    while(player.health < 100) {
+        player.health = 100;
+        sleep(100);
+    }
+}</pre>
         </div>
-        <p>Have questions? Contact:  | 📧 jasongillam6@gmail.com</p>
-    </div>
 
-    <div class="cart-floater">
-        🛒 Cart: <span id="cart-count">0</span> items
+        <!-- Chapter 4: Shop -->
+        <div class="chapter" id="market">
+            <h2>Chapter IV: Black Market</h2>
+            <div class="offer-box">
+                <h3>⚡ Pro Modding Services</h3>
+                <ul>
+                    <li>[IPTV] Phoenix Package - 10,000+ channels</li>
+                    <li>[MOD] Eternal God Mode - $50</li>
+                    <li>[TOOL] Memory Forge Pro - $150</li>
+                </ul>
+                <button style="background: #0f0; color: #000; border: none; padding: 10px;">
+                    Purchase (BTC Accepted)
+                </button>
+            </div>
+        </div>
+
+        <!-- Chapter 5: Advanced -->
+        <div class="chapter" id="forbidden">
+            <h2>Chapter V: Forbidden Arts</h2>
+            <div class="warning" style="background: #000; color: #f00;">
+                ㊙️ Kernel-level Modding Techniques
+            </div>
+            <div class="codex">
+                <h3>GitHub Arcana</h3>
+                <ul>
+                    <li><a href="https://github.com/cheat-engine/cheat-engine">Cheat Engine Source</a></li>
+                    <li><a href="https://github.com/unknowncheats">UnknownCheats Repos</a></li>
+                </ul>
+            </div>
+
+            <!-- PS4 Jailbreak Section -->
+            <div class="codex">
+                <h2>🎮 PS4 Jailbreak: Ultimate Guide to Tools, Mods, and Resources 🎮</h2>
+                <p>Unlock your PS4’s full potential with this guide to jailbreaking, homebrew, and modding.</p>
+
+                <h3>🔧 Essential Tools for PS4 Jailbreaking</h3>
+                <ul>
+                    <li><strong>GoldHEN</strong>: The most reliable tool for enabling homebrew. <a href="https://github.com/GoldHEN/GoldHEN">GitHub Link</a></li>
+                    <li><strong>Mira Project</strong>: Advanced capabilities like kernel dumping. <a href="https://github.com/OpenOrbis/mira">GitHub Link</a></li>
+                    <li><strong>FTPS4</strong>: Easy file transfers between PS4 and PC. <a href="https://github.com/Znullptr/ftps4/releases">GitHub Link</a></li>
+                </ul>
+
+                <h3>🎮 GSC Injectors and Menus for Call of Duty</h3>
+                <ul>
+                    <li><strong>GSC Studio</strong>: Custom scripts and game modes. <a href="https://github.com/iMCSx/GSC-Studios">GitHub Link</a></li>
+                    <li><strong>Shark Menu</strong> and <strong>Project Iconic</strong>: Popular mod menus for Black Ops 3. <a href="https://www.youtube.com/watch?v=0jDJ8E7XqA8">YouTube Tutorial</a></li>
+                </ul>
+
+                <h3>🛡 Protect Your Jailbreak: Block Updates</h3>
+                <p>Use custom DNS settings to block automatic updates:</p>
+                <ul>
+                    <li><strong>Primary DNS</strong>: 165.227.83.145</li>
+                    <li><strong>Secondary DNS</strong>: 192.241.221.79</li>
+                </ul>
+
+                <h3>🚀 Additional Tools and Payloads</h3>
+                <ul>
+                    <li><strong>AppToUSB</strong>: Move games to external storage. <a href="https://www.psxhax.com/threads/apptousb-1-0-by-stooged-for-ps4-4-05-4-55-5-05-released.5556/">Link</a></li>
+                    <li><strong>PS4 Dumper VTX</strong>: Backup your games. <a href="https://www.psxhax.com/threads/ps4-dumper-vtx-by-flat_z-for-backup-gaming-on-4-05-fw.5205/">Link</a></li>
+                    <li><strong>PS4REN</strong>: Enable Remote Play. <a href="https://wololo.net/ps4-remote-play-enabler/">Link</a></li>
+                </ul>
+
+                <h3>📦 Finding and Managing PKG Files</h3>
+                <ul>
+                    <li><strong>DLPSGames</strong>: Download PS4 PKG files. <a href="https://dlpsgame.org/">Link</a></li>
+                    <li><strong>PKGi PS4</strong>: Install PKG files directly. <a href="https://www.psxhax.com/threads/pkgi-ps4-pkg-installer-ps4-homebrew-app-by-bucanero-arrives.10090/">Link</a></li>
+                </ul>
+
+                <h3>⚠ Final Thoughts</h3>
+                <p>Jailbreaking your PS4 can unlock amazing possibilities, but it also requires careful management to maintain stability and avoid problems. Always use trusted tools and follow reliable guides.</p>
+            </div>
+
+            <!-- Shop Section -->
+            <div class="offer-box">
+                <h3>⚠ [PS4/PS5] Modded Account Services ⚠</h3>
+                <ul>
+                    <li><strong>Package 1</strong>: Prestige 9999, Modded Classes, Unlock All - £15</li>
+                    <li><strong>Package 2</strong>: Prestige 15, GodMod Classes - £10</li>
+                    <li><strong>Package 3</strong>: Prestige Master Level 1000, Unlimited Death Machine - £25</li>
+                    <li><strong>Liquids</strong>: 100k - £5, 500k - £10, 1 Million - £20</li>
+                    <li><strong>Custom Avatars</strong>: £2 each</li>
+                </ul>
+                <button>Purchase (PayPal Only)</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Shopping Cart System
-        let cart = [];
-        const cartCount = document.getElementById('cart-count');
-        
-        document.querySelectorAll('.buy-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const package = button.dataset.package;
-                const price = parseFloat(button.parentElement.querySelector('.price-tag').textContent.replace('£', ''));
-                
-                cart.push({
-                    package: package,
-                    price: price,
-                    timestamp: new Date().getTime()
+        // Smooth scroll for TOC
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-                
-                updateCartDisplay();
-                alert(`Added ${package.toUpperCase()} to cart!`);
             });
         });
 
-        function updateCartDisplay() {
-            cartCount.textContent = cart.length;
-            localStorage.setItem('dexmod-cart', JSON.stringify(cart));
-        }
-
-        // Initialize from storage
-        const savedCart = localStorage.getItem('dexmod-cart');
-        if(savedCart) cart = JSON.parse(savedCart);
-        updateCartDisplay();
+        // Matrix effect for shop section
+        const shopBox = document.querySelector('.offer-box');
+        shopBox.addEventListener('mouseenter', () => {
+            shopBox.style.animation = 'glitch 0.5s infinite';
+        });
     </script>
 </body>
 </html>
