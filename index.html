@@ -15,284 +15,209 @@
             font-family: 'Courier New', monospace;
             background: var(--parchment);
             color: var(--ink);
-            line-height: 1.6;
             margin: 0;
-            padding: 40px;
-            position: relative;
-        }
-
-        /* Book Layout */
-        .book-margin {
-            max-width: 800px;
-            margin: 0 auto;
-            border-left: 15px solid #5d4a30;
-            padding: 0 40px;
-            min-height: 100vh;
-        }
-
-        /* Table of Contents */
-        .toc {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--parchment);
-            border: 2px solid var(--ink);
-            padding: 20px;
-        }
-
-        .toc a {
-            color: var(--blood);
-            text-decoration: none;
-            display: block;
-            margin: 5px 0;
-        }
-
-        /* Chapters */
-        .chapter {
-            margin: 40px 0;
-            border-bottom: 1px dashed var(--ink);
-            padding-bottom: 30px;
-        }
-
-        /* Special Elements */
-        .codex {
-            background: #fff;
-            border: 3px double var(--ink);
-            padding: 20px;
-            margin: 15px 0;
-        }
-
-        .warning {
-            border-left: 5px solid var(--blood);
-            padding: 10px;
-            background: #ffebee;
-        }
-
-        .tool-list {
-            columns: 2;
-        }
-
-        /* Shop Section */
-        .offer-box {
-            background: #000;
-            color: #0f0;
-            border: 3px solid #0f0;
-            padding: 20px;
-            font-family: 'VT323', monospace;
-        }
-
-        .offer-box h3 {
-            color: #0f0;
-        }
-
-        .offer-box ul {
-            list-style: none;
             padding: 0;
         }
 
-        .offer-box li {
+        /* Navigation */
+        .navbar {
+            background: var(--ink);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: var(--blood);
+        }
+
+        /* Content Sections */
+        .content {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            border: 2px solid var(--ink);
+            background: white;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        /* Shop Section */
+        .shop-item {
+            border: 1px solid var(--ink);
+            padding: 10px;
             margin: 10px 0;
         }
 
-        .offer-box button {
-            background: #0f0;
-            color: #000;
+        .shop-item button {
+            background: var(--blood);
+            color: white;
             border: none;
-            padding: 10px;
+            padding: 5px 10px;
             cursor: pointer;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .toc {
-                position: static;
-                transform: none;
-                margin-bottom: 30px;
-            }
-            
-            .book-margin {
-                padding: 0 20px;
-                border-left: 5px solid #5d4a30;
+            .navbar a {
+                display: block;
+                margin: 10px 0;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="book-margin">
-        <!-- Table of Contents -->
-        <nav class="toc">
-            <h2>Codex Contents</h2>
-            <a href="#arcane">Arcane Knowledge</a>
-            <a href="#tools">Blacksmith's Tools</a>
-            <a href="#alchemy">Reverse Alchemy</a>
-            <a href="#market">Black Market</a>
-            <a href="#forbidden">Forbidden Arts</a>
-        </nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#home" onclick="showSection('home')">Home</a>
+        <a href="#tools" onclick="showSection('tools')">Tools</a>
+        <a href="#ps4" onclick="showSection('ps4')">PS4 Jailbreak</a>
+        <a href="#shop" onclick="showSection('shop')">Shop</a>
+        <a href="#faq" onclick="showSection('faq')">FAQ</a>
+        <a href="#contact" onclick="showSection('contact')">Contact</a>
+    </nav>
 
-        <!-- Cover Page -->
-        <div class="chapter" style="text-align: center; margin-top: 100px;">
-            <h1 style="font-size: 3em; border-bottom: none;">THE MODDER'S GRIMOIRE</h1>
-            <p style="font-family: 'VT323', monospace;">Compiled from the depths of UnknownCheats.me and shadowed YouTube channels</p>
+    <!-- Home Section -->
+    <div id="home" class="content active">
+        <h1>Welcome to The Modder's Grimoire</h1>
+        <p>Your ultimate guide to modding, jailbreaking, and unlocking the full potential of your devices.</p>
+        <p>Click on the tabs above to explore.</p>
+    </div>
+
+    <!-- Tools Section -->
+    <div id="tools" class="content">
+        <h2>Essential Modding Tools</h2>
+        <ul>
+            <li><strong>Cheat Engine</strong>: Memory editing for PC games.</li>
+            <li><strong>IDA Pro</strong>: Disassembly and reverse engineering.</li>
+            <li><strong>GSC Studio</strong>: Call of Duty modding tool.</li>
+        </ul>
+    </div>
+
+    <!-- PS4 Jailbreak Section -->
+    <div id="ps4" class="content">
+        <h2>🎮 PS4 Jailbreak: Ultimate Guide 🎮</h2>
+
+        <!-- 4.05 Firmware -->
+        <h3>🔧 Firmware 4.05</h3>
+        <ul>
+            <li><strong>APPtoUSB v17</strong>: <a href="https://github.com/stooged/AppToUsb-405">GitHub</a></li>
+            <li><strong>DB-SG Backup</strong>: <a href="https://github.com/stooged/DB_SG_Backup">GitHub</a></li>
+            <li><strong>Dumper-XVortex v1.6</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx/tree/1.6">GitHub</a></li>
+            <li><strong>FTP-XVortex v1.1</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx/tree/1.1">GitHub</a></li>
+            <li><strong>HEN-XVortex v1.3</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx/tree/1.3">GitHub</a></li>
+            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged">GitHub</a></li>
+            <li><strong>Enable Browser</strong>: <a href="https://www.psxhax.com/threads/ps4brew-4-55-full-ps4-jailbreak-4-55-debug-settings-payload-ports.4568">Link</a></li>
+            <li><strong>PKG2USB v1</strong>: <a href="https://github.com/CelesteBlue-dev/ps4-pkg2usb">GitHub</a></li>
+            <li><strong>Original (Specter)</strong>: <a href="https://github.com/Cryptogenic/PS4-4.05-Kernel-Exploit">GitHub</a></li>
+            <li><strong>Original (idc)</strong>: <a href="https://github.com/idc/ps4-entrypoint-405/tree/b9cfb690b836613bb953e5091cd925e938b996af">GitHub</a></li>
+            <li><strong>Update Blocker v2</strong>: <a href="https://github.com/LightningMods/PS4-HEN-Update-Blocker-Payload">GitHub</a></li>
+            <li><strong>Uninstall Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-HEN-Update-Blocker-Payload">GitHub</a></li>
+        </ul>
+
+        <!-- 4.55 Firmware -->
+        <h3>🔧 Firmware 4.55</h3>
+        <ul>
+            <li><strong>APPtoUSB v17</strong>: <a href="https://github.com/stooged/AppToUsb-455">GitHub</a></li>
+            <li><strong>DB-SG Backup</strong>: <a href="https://github.com/stooged/DB_SG_Backup">GitHub</a></li>
+            <li><strong>Dumper-XVortex v1.7</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx">GitHub</a></li>
+            <li><strong>FTP-XVortex v1.2</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx">GitHub</a></li>
+            <li><strong>HEN-XVortex v1.4</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx">GitHub</a></li>
+            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged/Enable_VR">GitHub</a></li>
+            <li><strong>Enable Browser</strong>: <a href="https://www.psxhax.com/threads/ps4brew-4-55-full-ps4-jailbreak-4-55-debug-settings-payload-ports.4568">Link</a></li>
+            <li><strong>PKG2USB v1</strong>: <a href="https://github.com/CelesteBlue-dev/ps4-pkg2usb">GitHub</a></li>
+            <li><strong>Original (Port 9020)</strong>: <a href="https://github.com/Cryptogenic/PS4-4.55-Kernel-Exploit">GitHub</a></li>
+            <li><strong>Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-4.55-Update-Blocker-HEN">GitHub</a></li>
+            <li><strong>Uninstall Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-4.55-Update-Blocker-HEN">GitHub</a></li>
+        </ul>
+
+        <!-- 5.05 Firmware -->
+        <h3>🔧 Firmware 5.05</h3>
+        <ul>
+            <li><strong>APPtoUSB v3</strong>: <a href="https://github.com/stooged/AppToUsb-50X">GitHub</a></li>
+            <li><strong>DB-SG Backup v3</strong>: <a href="https://github.com/stooged/DB_SG_Backup-50X">GitHub</a></li>
+            <li><strong>History Blocker v2</strong>: <a href="https://github.com/stooged/History-Blocker">GitHub</a></li>
+            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged/Enable-VR-50X">GitHub</a></li>
+            <li><strong>Dumper-XVortex v1.8</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx">GitHub</a></li>
+            <li><strong>FTP-XVortex v1.3</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx">GitHub</a></li>
+            <li><strong>HEN-XVortex v1.7</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx">GitHub</a></li>
+            <li><strong>MIRA + HEN</strong>: <a href="https://github.com/Cryptogenic/PS4-5.05-Kernel-Exploit">GitHub</a></li>
+            <li><strong>MIRA</strong>: <a href="https://github.com/OpenOrbis/mira-project">GitHub</a></li>
+            <li><strong>PS4 5.0x Update-Blocker and HEN</strong>: <a href="https://github.com/LightningMods/PS4-Update-Blocker-HEN">GitHub</a></li>
+            <li><strong>PS4 System 5.0x RW-FTP</strong>: <a href="https://github.com/LightningMods/PS4-System-RW-FTP">GitHub</a></li>
+            <li><strong>reactPSPLUS</strong>: <a href="https://github.com/Thunder07/reactPSPLUS">GitHub</a></li>
+            <li><strong>Linux Loader</strong>: <a href="https://github.com/valentinbreiz/PS4-Linux-Loader/tree/5.05">GitHub</a></li>
+            <li><strong>Bin Loader</strong>: <a href="http://ps4exploits.darksoftware.xyz/5.05/Bin-Loader/">Link</a></li>
+            <li><strong>FTP-RW</strong>: <a href="http://ps4exploits.darksoftware.xyz/5.05/FTP-RW/">Link</a></li>
+        </ul>
+    </div>
+
+    <!-- Shop Section -->
+    <div id="shop" class="content">
+        <h2>⚠ Black Market Services ⚠</h2>
+        <div class="shop-item">
+            <h3>[PS4/PS5] Black Ops 3 Modded Account</h3>
+            <p>Prestige 9999, Modded Classes, Unlock All - £15</p>
+            <button>Buy Now</button>
         </div>
-
-        <!-- Chapter 1: Basics -->
-        <div class="chapter" id="arcane">
-            <h2>Chapter I: Arcane Knowledge</h2>
-            <div class="codex">
-                <h3>↯ What is Modding?</h3>
-                <p>The art of bending reality to your will through:</p>
-                <ul>
-                    <li>Memory injection (Cheat Engine)</li>
-                    <li>Binary alchemy (Hex editing)</li>
-                    <li>Script sorcery (Lua/Python)</li>
-                </ul>
-                
-                <div class="warning">
-                    ⚠️ Warning: Modding may anger the DRM gods
-                </div>
-            </div>
+        <div class="shop-item">
+            <h3>[PS4/PS5] Advanced Warfare Modded Account</h3>
+            <p>Any Rank, Unlock All, Modded Classes - £10</p>
+            <button>Buy Now</button>
         </div>
-
-        <!-- Chapter 2: Tools -->
-        <div class="chapter" id="tools">
-            <h2>Chapter II: Blacksmith's Tools</h2>
-            <div class="tool-list">
-                <h3>Essential Implements:</h3>
-                <ul>
-                    <li>Cheat Engine (Memory forge)</li>
-                    <li>IDA Pro (Disassembly anvil)</li>
-                    <li>Frida (Dynamic spellcasting)</li>
-                    <li>010 Editor (Binary telescope)</li>
-                    <li>Process Hacker (Soul observer)</li>
-                </ul>
-            </div>
-            
-            <!-- Embedded YouTube Tutorial -->
-            <div class="codex">
-                <h3>↪ Initiation Rite (Tutorial)</h3>
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                        frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <!-- Chapter 3: Reverse Engineering -->
-        <div class="chapter" id="alchemy">
-            <h2>Chapter III: Reverse Alchemy</h2>
-            <pre style="background: #000; color: #0f0; padding: 15px;">
-// Sample Memory Injection Spell
-void immortality() {
-    while(player.health < 100) {
-        player.health = 100;
-        sleep(100);
-    }
-}</pre>
-        </div>
-
-        <!-- Chapter 4: Shop -->
-        <div class="chapter" id="market">
-            <h2>Chapter IV: Black Market</h2>
-            <div class="offer-box">
-                <h3>⚡ Pro Modding Services</h3>
-                <ul>
-                    <li>[IPTV] Phoenix Package - 10,000+ channels</li>
-                    <li>[MOD] Eternal God Mode - $50</li>
-                    <li>[TOOL] Memory Forge Pro - $150</li>
-                </ul>
-                <button style="background: #0f0; color: #000; border: none; padding: 10px;">
-                    Purchase (BTC Accepted)
-                </button>
-            </div>
-        </div>
-
-        <!-- Chapter 5: Advanced -->
-        <div class="chapter" id="forbidden">
-            <h2>Chapter V: Forbidden Arts</h2>
-            <div class="warning" style="background: #000; color: #f00;">
-                ㊙️ Kernel-level Modding Techniques
-            </div>
-            <div class="codex">
-                <h3>GitHub Arcana</h3>
-                <ul>
-                    <li><a href="https://github.com/cheat-engine/cheat-engine">Cheat Engine Source</a></li>
-                    <li><a href="https://github.com/unknowncheats">UnknownCheats Repos</a></li>
-                </ul>
-            </div>
-
-            <!-- PS4 Jailbreak Section -->
-            <div class="codex">
-                <h2>🎮 PS4 Jailbreak: Ultimate Guide to Tools, Mods, and Resources 🎮</h2>
-                <p>Unlock your PS4’s full potential with this guide to jailbreaking, homebrew, and modding.</p>
-
-                <h3>🔧 Essential Tools for PS4 Jailbreaking</h3>
-                <ul>
-                    <li><strong>GoldHEN</strong>: The most reliable tool for enabling homebrew. <a href="https://github.com/GoldHEN/GoldHEN">GitHub Link</a></li>
-                    <li><strong>Mira Project</strong>: Advanced capabilities like kernel dumping. <a href="https://github.com/OpenOrbis/mira">GitHub Link</a></li>
-                    <li><strong>FTPS4</strong>: Easy file transfers between PS4 and PC. <a href="https://github.com/Znullptr/ftps4/releases">GitHub Link</a></li>
-                </ul>
-
-                <h3>🎮 GSC Injectors and Menus for Call of Duty</h3>
-                <ul>
-                    <li><strong>GSC Studio</strong>: Custom scripts and game modes. <a href="https://github.com/iMCSx/GSC-Studios">GitHub Link</a></li>
-                    <li><strong>Shark Menu</strong> and <strong>Project Iconic</strong>: Popular mod menus for Black Ops 3. <a href="https://www.youtube.com/watch?v=0jDJ8E7XqA8">YouTube Tutorial</a></li>
-                </ul>
-
-                <h3>🛡 Protect Your Jailbreak: Block Updates</h3>
-                <p>Use custom DNS settings to block automatic updates:</p>
-                <ul>
-                    <li><strong>Primary DNS</strong>: 165.227.83.145</li>
-                    <li><strong>Secondary DNS</strong>: 192.241.221.79</li>
-                </ul>
-
-                <h3>🚀 Additional Tools and Payloads</h3>
-                <ul>
-                    <li><strong>AppToUSB</strong>: Move games to external storage. <a href="https://www.psxhax.com/threads/apptousb-1-0-by-stooged-for-ps4-4-05-4-55-5-05-released.5556/">Link</a></li>
-                    <li><strong>PS4 Dumper VTX</strong>: Backup your games. <a href="https://www.psxhax.com/threads/ps4-dumper-vtx-by-flat_z-for-backup-gaming-on-4-05-fw.5205/">Link</a></li>
-                    <li><strong>PS4REN</strong>: Enable Remote Play. <a href="https://wololo.net/ps4-remote-play-enabler/">Link</a></li>
-                </ul>
-
-                <h3>📦 Finding and Managing PKG Files</h3>
-                <ul>
-                    <li><strong>DLPSGames</strong>: Download PS4 PKG files. <a href="https://dlpsgame.org/">Link</a></li>
-                    <li><strong>PKGi PS4</strong>: Install PKG files directly. <a href="https://www.psxhax.com/threads/pkgi-ps4-pkg-installer-ps4-homebrew-app-by-bucanero-arrives.10090/">Link</a></li>
-                </ul>
-
-                <h3>⚠ Final Thoughts</h3>
-                <p>Jailbreaking your PS4 can unlock amazing possibilities, but it also requires careful management to maintain stability and avoid problems. Always use trusted tools and follow reliable guides.</p>
-            </div>
-
-            <!-- Shop Section -->
-            <div class="offer-box">
-                <h3>⚠ [PS4/PS5] Modded Account Services ⚠</h3>
-                <ul>
-                    <li><strong>Package 1</strong>: Prestige 9999, Modded Classes, Unlock All - £15</li>
-                    <li><strong>Package 2</strong>: Prestige 15, GodMod Classes - £10</li>
-                    <li><strong>Package 3</strong>: Prestige Master Level 1000, Unlimited Death Machine - £25</li>
-                    <li><strong>Liquids</strong>: 100k - £5, 500k - £10, 1 Million - £20</li>
-                    <li><strong>Custom Avatars</strong>: £2 each</li>
-                </ul>
-                <button>Purchase (PayPal Only)</button>
-            </div>
+        <div class="shop-item">
+            <h3>Custom Avatars</h3>
+            <p>£2 each</p>
+            <button>Buy Now</button>
         </div>
     </div>
 
-    <script>
-        // Smooth scroll for TOC
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <!-- FAQ Section -->
+    <div id="faq" class="content">
+        <h2>❓ Frequently Asked Questions</h2>
+        <h3>Can I jailbreak my PS4 on firmware 11.00?</h3>
+        <p>No, firmware versions above 11.00 cannot be jailbroken. Be cautious of scams claiming otherwise.</p>
+        <h3>Is jailbreaking safe?</h3>
+        <p>Jailbreaking can void your warranty and carries risks like bricking your console. Always follow trusted guides.</p>
+    </div>
 
-        // Matrix effect for shop section
-        const shopBox = document.querySelector('.offer-box');
-        shopBox.addEventListener('mouseenter', () => {
-            shopBox.style.animation = 'glitch 0.5s infinite';
-        });
+    <!-- Contact Section -->
+    <div id="contact" class="content">
+        <h2>Contact Us</h2>
+        <p>For custom orders or questions, email: <strong>support@modpro.com</strong></p>
+    </div>
+
+    <script>
+        // Show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Set the home section as active by default
+        showSection('home');
     </script>
 </body>
 </html>
