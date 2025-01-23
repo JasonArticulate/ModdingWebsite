@@ -3,221 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Modder's Grimoire</title>
+    <title>Modding Sanctuary</title>
     <style>
         :root {
-            --parchment: #f0e6d3;
-            --ink: #2a2a2a;
-            --blood: #8b0000;
+            --sidebar: #2c2f33;
+            --accent: #7289da;
+            --background: #f9f9f9;
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: var(--parchment);
-            color: var(--ink);
             margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+            background: var(--background);
+        }
+
+        /* Left Navigation */
+        .sidebar {
+            background: var(--sidebar);
+            padding: 20px;
+            position: fixed;
+            width: 250px;
+            height: 100%;
+        }
+
+        .logo {
+            width: 180px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links {
+            list-style: none;
             padding: 0;
         }
 
-        /* Navigation */
-        .navbar {
-            background: var(--ink);
-            padding: 10px;
-            text-align: center;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        .navbar a:hover {
-            color: var(--blood);
-        }
-
-        /* Content Sections */
-        .content {
-            display: none;
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
-            border: 2px solid var(--ink);
-            background: white;
-        }
-
-        .content.active {
-            display: block;
-        }
-
-        /* Code Blocks */
-        pre {
-            background: #000;
-            color: #0f0;
-            padding: 15px;
-            overflow-x: auto;
-        }
-
-        /* Shop Section */
-        .shop-item {
-            border: 1px solid var(--ink);
-            padding: 10px;
+        .nav-links li {
             margin: 10px 0;
         }
 
-        .shop-item button {
-            background: var(--blood);
+        .nav-links a {
             color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
+            text-decoration: none;
+            padding: 12px;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        /* Wololo-style Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Featured Section */
+        .featured {
+            background: var(--accent);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .navbar a {
-                display: block;
-                margin: 10px 0;
+            body {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            
+            .main-content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#home" onclick="showSection('home')">Home</a>
-        <a href="#tools" onclick="showSection('tools')">Tools</a>
-        <a href="#ps4" onclick="showSection('ps4')">PS4 Jailbreak</a>
-        <a href="#shop" onclick="showSection('shop')">Shop</a>
-        <a href="#faq" onclick="showSection('faq')">FAQ</a>
-        <a href="#contact" onclick="showSection('contact')">Contact</a>
+    <!-- Left Navigation -->
+    <nav class="sidebar">
+        <img src="https://i.ibb.co/0jQ7ZtG/modding-logo.png" alt="Modding Sanctuary" class="logo">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ps4-jailbreak">PS4 Jailbreak</a></li>
+            <li><a href="#tools">Modding Tools</a></li>
+            <li><a href="#shop">Modded Services</a></li>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#forum">Community</a></li>
+        </ul>
     </nav>
 
-    <!-- Home Section -->
-    <div id="home" class="content active">
-        <h1>Welcome to The Modder's Grimoire</h1>
-        <p>Your ultimate guide to modding, jailbreaking, and unlocking the full potential of your devices.</p>
-        <p>Click on the tabs above to explore.</p>
-    </div>
-
-    <!-- Tools Section -->
-    <div id="tools" class="content">
-        <h2>Essential Modding Tools</h2>
-        <ul>
-            <li><strong>Cheat Engine</strong>: Memory editing for PC games.</li>
-            <li><strong>IDA Pro</strong>: Disassembly and reverse engineering.</li>
-            <li><strong>GSC Studio</strong>: Call of Duty modding tool.</li>
-        </ul>
-    </div>
-
-    <!-- PS4 Jailbreak Section -->
-    <div id="ps4" class="content">
-        <h2>🎮 PS4 Jailbreak: Ultimate Guide 🎮</h2>
-
-        <!-- 4.05 Firmware -->
-        <h3>🔧 Firmware 4.05</h3>
-        <ul>
-            <li><strong>APPtoUSB v17</strong>: <a href="https://github.com/stooged/AppToUsb-405">GitHub</a></li>
-            <li><strong>DB-SG Backup</strong>: <a href="https://github.com/stooged/DB_SG_Backup">GitHub</a></li>
-            <li><strong>Dumper-XVortex v1.6</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx/tree/1.6">GitHub</a></li>
-            <li><strong>FTP-XVortex v1.1</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx/tree/1.1">GitHub</a></li>
-            <li><strong>HEN-XVortex v1.3</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx/tree/1.3">GitHub</a></li>
-            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged">GitHub</a></li>
-            <li><strong>Enable Browser</strong>: <a href="https://www.psxhax.com/threads/ps4brew-4-55-full-ps4-jailbreak-4-55-debug-settings-payload-ports.4568">Link</a></li>
-            <li><strong>PKG2USB v1</strong>: <a href="https://github.com/CelesteBlue-dev/ps4-pkg2usb">GitHub</a></li>
-            <li><strong>Original (Specter)</strong>: <a href="https://github.com/Cryptogenic/PS4-4.05-Kernel-Exploit">GitHub</a></li>
-            <li><strong>Original (idc)</strong>: <a href="https://github.com/idc/ps4-entrypoint-405/tree/b9cfb690b836613bb953e5091cd925e938b996af">GitHub</a></li>
-            <li><strong>Update Blocker v2</strong>: <a href="https://github.com/LightningMods/PS4-HEN-Update-Blocker-Payload">GitHub</a></li>
-            <li><strong>Uninstall Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-HEN-Update-Blocker-Payload">GitHub</a></li>
-        </ul>
-
-        <!-- 4.55 Firmware -->
-        <h3>🔧 Firmware 4.55</h3>
-        <ul>
-            <li><strong>APPtoUSB v17</strong>: <a href="https://github.com/stooged/AppToUsb-455">GitHub</a></li>
-            <li><strong>DB-SG Backup</strong>: <a href="https://github.com/stooged/DB_SG_Backup">GitHub</a></li>
-            <li><strong>Dumper-XVortex v1.7</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx">GitHub</a></li>
-            <li><strong>FTP-XVortex v1.2</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx">GitHub</a></li>
-            <li><strong>HEN-XVortex v1.4</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx">GitHub</a></li>
-            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged/Enable_VR">GitHub</a></li>
-            <li><strong>Enable Browser</strong>: <a href="https://www.psxhax.com/threads/ps4brew-4-55-full-ps4-jailbreak-4-55-debug-settings-payload-ports.4568">Link</a></li>
-            <li><strong>PKG2USB v1</strong>: <a href="https://github.com/CelesteBlue-dev/ps4-pkg2usb">GitHub</a></li>
-            <li><strong>Original (Port 9020)</strong>: <a href="https://github.com/Cryptogenic/PS4-4.55-Kernel-Exploit">GitHub</a></li>
-            <li><strong>Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-4.55-Update-Blocker-HEN">GitHub</a></li>
-            <li><strong>Uninstall Update Blocker</strong>: <a href="https://github.com/LightningMods/PS4-4.55-Update-Blocker-HEN">GitHub</a></li>
-        </ul>
-
-        <!-- 5.05 Firmware -->
-        <h3>🔧 Firmware 5.05</h3>
-        <ul>
-            <li><strong>APPtoUSB v3</strong>: <a href="https://github.com/stooged/AppToUsb-50X">GitHub</a></li>
-            <li><strong>DB-SG Backup v3</strong>: <a href="https://github.com/stooged/DB_SG_Backup-50X">GitHub</a></li>
-            <li><strong>History Blocker v2</strong>: <a href="https://github.com/stooged/History-Blocker">GitHub</a></li>
-            <li><strong>HEN-VR</strong>: <a href="https://github.com/stooged/Enable-VR-50X">GitHub</a></li>
-            <li><strong>Dumper-XVortex v1.8</strong>: <a href="https://github.com/xvortex/ps4-dumper-vtx">GitHub</a></li>
-            <li><strong>FTP-XVortex v1.3</strong>: <a href="https://github.com/xvortex/ps4-ftp-vtx">GitHub</a></li>
-            <li><strong>HEN-XVortex v1.7</strong>: <a href="https://github.com/xvortex/ps4-hen-vtx">GitHub</a></li>
-            <li><strong>MIRA + HEN</strong>: <a href="https://github.com/Cryptogenic/PS4-5.05-Kernel-Exploit">GitHub</a></li>
-            <li><strong>MIRA</strong>: <a href="https://github.com/OpenOrbis/mira-project">GitHub</a></li>
-            <li><strong>PS4 5.0x Update-Blocker and HEN</strong>: <a href="https://github.com/LightningMods/PS4-Update-Blocker-HEN">GitHub</a></li>
-            <li><strong>PS4 System 5.0x RW-FTP</strong>: <a href="https://github.com/LightningMods/PS4-System-RW-FTP">GitHub</a></li>
-            <li><strong>reactPSPLUS</strong>: <a href="https://github.com/Thunder07/reactPSPLUS">GitHub</a></li>
-            <li><strong>Linux Loader</strong>: <a href="https://github.com/valentinbreiz/PS4-Linux-Loader/tree/5.05">GitHub</a></li>
-            <li><strong>Bin Loader</strong>: <a href="http://ps4exploits.darksoftware.xyz/5.05/Bin-Loader/">Link</a></li>
-            <li><strong>FTP-RW</strong>: <a href="http://ps4exploits.darksoftware.xyz/5.05/FTP-RW/">Link</a></li>
-        </ul>
-    </div>
-
-    <!-- Shop Section -->
-    <div id="shop" class="content">
-        <h2>⚠ Black Market Services ⚠</h2>
-        <div class="shop-item">
-            <h3>[PS4/PS5] Black Ops 3 Modded Account</h3>
-            <p>Prestige 9999, Modded Classes, Unlock All - £15</p>
-            <button>Buy Now</button>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Featured Section -->
+        <div class="featured">
+            <h2>🔥 Latest Updates</h2>
+            <p>GoldHEN v2.3 released with improved stability | New PS4 9.00 exploit research</p>
         </div>
-        <div class="shop-item">
-            <h3>[PS4/PS5] Advanced Warfare Modded Account</h3>
-            <p>Any Rank, Unlock All, Modded Classes - £10</p>
-            <button>Buy Now</button>
-        </div>
-        <div class="shop-item">
-            <h3>Custom Avatars</h3>
-            <p>£2 each</p>
-            <button>Buy Now</button>
-        </div>
-    </div>
 
-    <!-- FAQ Section -->
-    <div id="faq" class="content">
-        <h2>❓ Frequently Asked Questions</h2>
-        <h3>Can I jailbreak my PS4 on firmware 11.50?</h3>
-        <p>No, firmware versions above 11.00 cannot be jailbroken. Be cautious of scams claiming otherwise.</p>
-        <h3>Is jailbreaking safe?</h3>
-        <p>Jailbreaking can void your warranty and carries risks like bricking your console. Always follow trusted guides.</p>
-    </div>
+        <!-- PS4 Jailbreak Section -->
+        <section id="ps4-jailbreak">
+            <h2>🔓 PS4 Jailbreak Resources</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Firmware 9.00 Guide</h3>
+                    <p>Complete walkthrough for 9.00 jailbreak with PPPwn exploit</p>
+                    <a href="#">Read Guide →</a>
+                </div>
+                <div class="card">
+                    <h3>Essential Payloads</h3>
+                    <ul>
+                        <li><a href="https://github.com/GoldHEN/GoldHEN">GoldHEN 2.3</a></li>
+                        <li><a href="https://github.com/OpenOrbis/mira-project">MIRA Project</a></li>
+                        <li><a href="https://github.com/stooged/AppToUsb-405">AppToUSB</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <!-- Contact Section -->
-    <div id="contact" class="content">
-        <h2>Contact Us</h2>
-        <p>For custom orders or questions, email: <strong>support@modpro.com</strong></p>
-    </div>
+        <!-- Modding Tools Section -->
+        <section id="tools" style="margin-top: 50px;">
+            <h2>🛠️ Ultimate Modding Toolkit</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Game Modding</h3>
+                    <ul>
+                        <li><a href="https://github.com/iMCSx/GSC-Studios">GSC Studio</a></li>
+                        <li><a href="https://github.com/Nefarius/DS4Windows">DS4Windows</a></li>
+                        <li><a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphere (Switch)</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Reverse Engineering</h3>
+                    <ul>
+                        <li><a href="https://github.com/NationalSecurityAgency/ghidra">Ghidra</a></li>
+                        <li><a href="https://github.com/x64dbg/x64dbg">x64dbg</a></li>
+                        <li><a href="https://github.com/cheat-engine/cheat-engine">Cheat Engine</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" style="margin-top: 50px;">
+            <h2>💎 Premium Services</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>BO3 Modded Accounts</h3>
+                    <ul>
+                        <li>Prestige 9999 - £15</li>
+                        <li>Unlimited DM - £25</li>
+                        <li>Custom Clantag - £5</li>
+                    </ul>
+                    <a href="#">Order Now →</a>
+                </div>
+                <div class="card">
+                    <h3>Custom Modding</h3>
+                    <ul>
+                        <li>Console Jailbreaking - £50</li>
+                        <li>Game Mod Creation - £100</li>
+                        <li>Private Training - £75/h</li>
+                    </ul>
+                    <a href="#">Contact Us →</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-        // Show the selected section and hide others
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.content').forEach(section => {
-                section.classList.remove('active');
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
-        }
-
-        // Set the home section as active by default
-        showSection('home');
+        });
     </script>
 </body>
 </html>
