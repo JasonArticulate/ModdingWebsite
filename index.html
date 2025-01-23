@@ -112,47 +112,55 @@
       width: 100%;
     }
 
-    /* Accessibility Controls */
-    .accessibility-bar {
-      background: #333;
-      padding: 0.5rem;
-      text-align: right;
+    /* Live Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 300px;
     }
 
-    .accessibility-btn {
-      background: none;
-      border: 1px solid white;
+    .chat-header {
+      background: var(--primary-color);
       color: white;
+      padding: 0.75rem;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .chat-body {
+      padding: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+
+    .chat-input input {
+      flex-grow: 1;
+      padding: 0.5rem;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+    }
+
+    .chat-input button {
+      background: var(--accent);
+      color: white;
+      border: none;
       padding: 0.5rem 1rem;
-      margin-left: 0.5rem;
+      border-radius: 4px;
       cursor: pointer;
-    }
-
-    /* High Contrast Mode */
-    .high-contrast {
-      --text-color: #000000;
-      --background-color: #ffffff;
-      --nav-bg: #eeeeee;
-    }
-
-    /* Print Styles */
-    @media print {
-      .container {
-        display: block;
-      }
-      nav {
-        display: none;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="accessibility-bar">
-    <button class="accessibility-btn" onclick="toggleContrast()">High Contrast</button>
-    <button class="accessibility-btn" onclick="increaseTextSize()">A+</button>
-    <button class="accessibility-btn" onclick="resetTextSize()">A-</button>
-  </div>
-
   <div class="container">
     <nav aria-label="Table of Contents">
       <ul class="nav-list">
@@ -160,6 +168,7 @@
         <li class="nav-item"><a href="#ps4-tools">PS4 Tools</a></li>
         <li class="nav-item"><a href="#shop">Modded Services</a></li>
         <li class="nav-item"><a href="#resources">Resources</a></li>
+        <li class="nav-item"><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
 
@@ -235,7 +244,34 @@
           </div>
         </div>
       </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" hidden tabindex="-1" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>What firmware is supported?</h3>
+            <p>PS4 firmware 9.00 and below.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How long does delivery take?</h3>
+            <p>Modded accounts are delivered within 24-48 hours.</p>
+          </div>
+        </div>
+      </section>
     </main>
+  </div>
+
+  <!-- Live Chat Widget -->
+  <div class="chat-widget">
+    <div class="chat-header">Live Support</div>
+    <div class="chat-body" id="chat-body">
+      <div>Support: Hi! How can I help?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
 
   <!-- Order Form Modal -->
@@ -252,19 +288,6 @@
   </div>
 
   <script>
-    // Accessibility Features
-    function toggleContrast() {
-      document.body.classList.toggle('high-contrast');
-    }
-
-    function increaseTextSize() {
-      document.body.style.fontSize = '1.1em';
-    }
-
-    function resetTextSize() {
-      document.body.style.fontSize = '1em';
-    }
-
     // Navigation Management
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -305,6 +328,17 @@
       alert(`Redirecting to PayPal for payment...\nPSN ID: ${psnId}\nEmail: ${email}`);
       window.location.href = 'https://paypal.me/MrJasonDEX';
     });
+
+    // Live Chat Logic
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const chatBody = document.getElementById('chat-body');
+      if (input.value.trim()) {
+        chatBody.innerHTML += `<div>You: ${input.value}</div>`;
+        input.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    }
 
     // Initialize first section
     document.getElementById('welcome').hidden = false;
