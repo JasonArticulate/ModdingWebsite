@@ -6,19 +6,18 @@
   <title>Modding Pro - Resources & Services</title>
   <style>
     :root {
-      --primary-color: #0056b3;
-      --text-color: #1a1a1a;
-      --background-color: #ffffff;
-      --nav-bg: #f8f9fa;
+      --primary: #0056b3;
       --accent: #ff5722;
+      --bg: #f8f9fa;
+      --text: #1a1a1a;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', system-ui;
-      color: var(--text-color);
-      background: var(--background-color);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -28,52 +27,70 @@
       min-height: 100vh;
     }
 
-    /* Left Navigation */
-    nav {
-      background: var(--nav-bg);
-      padding: 1rem;
-      border-right: 1px solid #dee2e6;
+    /* Sidebar */
+    .sidebar {
+      background: white;
+      padding: 2rem;
+      border-right: 1px solid #e0e0e0;
+      box-shadow: var(--shadow);
     }
 
-    .nav-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .sidebar h2 {
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .nav-item {
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-item:hover {
+      background: var(--bg);
+      transform: translateX(5px);
     }
 
     .nav-item a {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: var(--text-color);
+      color: var(--text);
       text-decoration: none;
-      border-radius: 4px;
-      transition: background-color 0.2s;
-    }
-
-    .nav-item a:hover,
-    .nav-item a:focus {
-      background: #e9ecef;
-      outline: 2px solid var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .nav-item a[aria-current="page"] {
-      background: var(--primary-color);
-      color: white;
+      color: var(--primary);
+      font-weight: bold;
     }
 
     /* Main Content */
-    main {
-      padding: 2rem;
+    .main-content {
+      padding: 3rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    section {
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      background: linear-gradient(135deg, var(--primary), #003366);
+      color: white;
+      border-radius: 12px;
       margin-bottom: 3rem;
     }
 
-    h1, h2 {
-      color: var(--primary-color);
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
     }
 
     /* Service Cards */
@@ -86,30 +103,41 @@
 
     .service-card {
       background: white;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
-      padding: 1.5rem;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
     .service-card h3 {
       margin-top: 0;
       color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .service-card p {
+      color: #666;
     }
 
     .service-card button {
-      background: var(--primary-color);
+      background: var(--primary);
       color: white;
       border: none;
       padding: 0.8rem 1.5rem;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       width: 100%;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .service-card button:hover {
+      background: #004080;
     }
 
     /* Live Chat Widget */
@@ -118,17 +146,17 @@
       bottom: 20px;
       right: 20px;
       background: white;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
       width: 300px;
+      overflow: hidden;
     }
 
     .chat-header {
-      background: var(--primary-color);
+      background: var(--primary);
       color: white;
-      padding: 0.75rem;
-      border-radius: 8px 8px 0 0;
+      padding: 1rem;
+      font-size: 1.1rem;
     }
 
     .chat-body {
@@ -141,13 +169,14 @@
       display: flex;
       gap: 0.5rem;
       padding: 1rem;
+      background: var(--bg);
     }
 
     .chat-input input {
       flex-grow: 1;
       padding: 0.5rem;
-      border: 1px solid #dee2e6;
-      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
     }
 
     .chat-input button {
@@ -155,33 +184,64 @@
       color: white;
       border: none;
       padding: 0.5rem 1rem;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .main-content {
+        padding: 2rem;
+      }
+
+      .hero {
+        padding: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <nav aria-label="Table of Contents">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="#welcome" aria-current="page">Welcome</a></li>
-        <li class="nav-item"><a href="#ps4-tools">PS4 Tools</a></li>
-        <li class="nav-item"><a href="#shop">Modded Services</a></li>
-        <li class="nav-item"><a href="#resources">Resources</a></li>
-        <li class="nav-item"><a href="#faq">FAQ</a></li>
-      </ul>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h2>Modding Pro</h2>
+      <div class="nav-item">
+        <a href="#welcome" aria-current="page">🏠 Home</a>
+      </div>
+      <div class="nav-item">
+        <a href="#ps4-tools">🎮 PS4 Tools</a>
+      </div>
+      <div class="nav-item">
+        <a href="#shop">💎 Modded Services</a>
+      </div>
+      <div class="nav-item">
+        <a href="#resources">📚 Resources</a>
+      </div>
+      <div class="nav-item">
+        <a href="#faq">❓ FAQ</a>
+      </div>
     </nav>
 
-    <main>
-      <!-- Welcome Section -->
-      <section id="welcome" tabindex="-1" aria-labelledby="welcome-heading">
-        <h1 id="welcome-heading">Welcome to Modding Pro</h1>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero" id="welcome">
+        <h1>Welcome to Modding Pro</h1>
         <p>Your ultimate resource for PS4 jailbreaking, game modding, and premium services.</p>
       </section>
 
       <!-- PS4 Tools Section -->
-      <section id="ps4-tools" hidden tabindex="-1" aria-labelledby="ps4-tools-heading">
-        <h2 id="ps4-tools-heading">PS4 Jailbreak Toolkit</h2>
+      <section id="ps4-tools">
+        <h2>PS4 Jailbreak Toolkit</h2>
         <div class="service-grid">
           <div class="service-card">
             <h3>GoldHEN 2.3</h3>
@@ -202,8 +262,8 @@
       </section>
 
       <!-- Shop Section -->
-      <section id="shop" hidden tabindex="-1" aria-labelledby="shop-heading">
-        <h2 id="shop-heading">Premium Services</h2>
+      <section id="shop">
+        <h2>Premium Services</h2>
         <div class="service-grid">
           <div class="service-card">
             <h3>BO3 Modded Account</h3>
@@ -229,8 +289,8 @@
       </section>
 
       <!-- Resources Section -->
-      <section id="resources" hidden tabindex="-1" aria-labelledby="resources-heading">
-        <h2 id="resources-heading">Learning Resources</h2>
+      <section id="resources">
+        <h2>Learning Resources</h2>
         <div class="service-grid">
           <div class="service-card">
             <h3>Jailbreak Guide</h3>
@@ -246,8 +306,8 @@
       </section>
 
       <!-- FAQ Section -->
-      <section id="faq" hidden tabindex="-1" aria-labelledby="faq-heading">
-        <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
         <div class="faq-grid">
           <div class="faq-item">
             <h3>What firmware is supported?</h3>
@@ -275,7 +335,7 @@
   </div>
 
   <!-- Order Form Modal -->
-  <div id="order-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+  <div id="order-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
     <h2 id="order-title"></h2>
     <form id="order-form">
       <label for="psn-id">PSN ID:</label>
@@ -289,25 +349,15 @@
 
   <script>
     // Navigation Management
-    document.querySelectorAll('nav a').forEach(link => {
+    document.querySelectorAll('.nav-item a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(link.hash);
-        
-        // Hide all sections
         document.querySelectorAll('section').forEach(section => {
-          section.hidden = true;
+          section.style.display = 'none';
         });
-        
-        // Show target section
-        target.hidden = false;
-        target.focus();
-        
-        // Update ARIA current
-        document.querySelectorAll('nav a').forEach(a => {
-          a.setAttribute('aria-current', 'false');
-        });
-        link.setAttribute('aria-current', 'page');
+        target.style.display = 'block';
+        window.scrollTo(0, 0);
       });
     });
 
@@ -341,7 +391,7 @@
     }
 
     // Initialize first section
-    document.getElementById('welcome').hidden = false;
+    document.getElementById('welcome').style.display = 'block';
   </script>
 </body>
 </html>
