@@ -1,216 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="cyberpunk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modding Matrix</title>
+    <title>Nexus Modding OS</title>
     <style>
         :root {
-            --nav-width: 280px;
-            --gap: 2rem;
-            --radius: 12px;
-            --bg: #0d0d0d;
-            --text: #e6e6e6;
-            --accent: #00ff88;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --matrix-green: #00ff88;
+            --neon-purple: #bc13fe;
+            --cyber-yellow: #ffd300;
+            --hacker-bg: #000;
+            --terminal-text: #0f0;
         }
 
         body {
-            font-family: 'Inter', system-ui;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            margin: 0;
+            background: var(--hacker-bg);
+            color: var(--terminal-text);
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
         }
 
-        /* Perfect Layout System */
-        .app-grid {
-            display: grid;
-            grid-template-columns: var(--nav-width) 1fr;
-            min-height: 100vh;
-            gap: var(--gap);
-            padding-right: var(--gap);
-        }
-
-        /* Smart Navigation */
-        .nav-wrapper {
+        /* HUD Interface */
+        .cyber-hud {
             position: fixed;
-            width: var(--nav-width);
-            height: 100vh;
-            padding: 2rem;
-            border-right: 1px solid rgba(255,255,255,0.1);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid var(--matrix-green);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 3rem;
         }
 
-        .main-content {
-            max-width: 1200px;
-            margin-left: calc(var(--nav-width) + var(--gap));
-            padding: 3rem 0;
-        }
-
-        /* Dynamic Content Cards */
-        .card {
-            background: rgba(255,255,255,0.05);
-            border-radius: var(--radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,255,136,0.1);
-        }
-
-        /* Auto-Responsive Grid */
-        .auto-grid {
-            --min-width: 300px;
+        /* Neural Network Grid */
+        .main-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
-            gap: 2rem;
+            grid-template-columns: 300px 1fr 300px;
+            height: calc(100vh - 40px);
+            margin-top: 40px;
         }
 
-        /* Theme System */
-        [data-theme="dark"] { --bg: #0d0d0d; --text: #e6e6e6; }
-        [data-theme="light"] { --bg: #f8f9fa; --text: #1a1a1a; }
-        [data-theme="cyber"] { --bg: #000; --text: #0f0; --accent: #ff0; }
-
-        /* Loading States */
-        .skeleton {
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            animation: pulse 1.5s infinite;
+        /* AI Assistant Panel */
+        .ai-panel {
+            border-right: 1px solid var(--neon-purple);
+            padding: 2rem;
+            background: linear-gradient(45deg, #000428, #004e92);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        /* Core Modding Interface */
+        .main-interface {
+            padding: 2rem;
+            border-right: 1px solid var(--cyber-yellow);
+            overflow-y: auto;
         }
 
-        @media (max-width: 1200px) {
-            .app-grid {
-                grid-template-columns: 1fr;
-                padding: 0;
-            }
+        /* Live Hacking Feed */
+        .hack-feed {
+            padding: 2rem;
+            background: rgba(0,255,136,0.05);
+        }
 
-            .nav-wrapper {
-                position: static;
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 2rem;
-            }
+        /* Animated Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255,0,0,.75),
+                            -0.05em -0.025em 0 rgba(0,255,0,.75),
+                            -0.025em 0.05em 0 rgba(0,0,255,.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255,0,0,.75),
+                            -0.05em -0.025em 0 rgba(0,255,0,.75),
+                            -0.025em 0.05em 0 rgba(0,0,255,.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75),
+                            0.025em 0.025em 0 rgba(0,255,0,.75),
+                            -0.05em -0.05em 0 rgba(0,0,255,.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75),
+                            0.025em 0.025em 0 rgba(0,255,0,.75),
+                            -0.05em -0.05em 0 rgba(0,0,255,.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75),
+                            0.05em 0 0 rgba(0,255,0,.75),
+                            0 -0.05em 0 rgba(0,0,255,.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75),
+                            0.05em 0 0 rgba(0,255,0,.75),
+                            0 -0.05em 0 rgba(0,0,255,.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255,0,0,.75),
+                            -0.025em -0.025em 0 rgba(0,255,0,.75),
+                            -0.025em -0.05em 0 rgba(0,0,255,.75); }
         }
     </style>
 </head>
 <body>
-    <div class="app-grid">
-        <!-- Navigation -->
-        <nav class="nav-wrapper">
-            <div class="logo">MOD</div>
-            <div class="nav-section">
-                <h3>Core Sections</h3>
-                <div class="nav-item active">Dashboard</div>
-                <div class="nav-item">PS4 Toolkit</div>
-                <div class="nav-item">Modded Services</div>
-                <div class="nav-item">Community</div>
-            </div>
-            
-            <div class="nav-section">
-                <h3>Theme Engine</h3>
-                <div class="theme-switcher">
-                    <button data-theme="dark">Dark</button>
-                    <button data-theme="light">Light</button>
-                    <button data-theme="cyber">Cyber</button>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard -->
-            <section class="card">
-                <h2>Live Modding Status</h2>
-                <div class="auto-grid" id="status-grid">
-                    <!-- Auto-populated via JS -->
-                    <div class="skeleton" style="height: 100px"></div>
-                    <div class="skeleton" style="height: 100px"></div>
-                </div>
-            </section>
-
-            <!-- Dynamic Tools Grid -->
-            <section class="card">
-                <h2>PS4 Exploit Toolkit</h2>
-                <div class="auto-grid" id="tools-grid">
-                    <!-- Auto-populated via JS -->
-                    <div class="skeleton" style="height: 200px"></div>
-                    <div class="skeleton" style="height: 200px"></div>
-                    <div class="skeleton" style="height: 200px"></div>
-                </div>
-            </section>
-
-            <!-- Shop -->
-            <section class="card">
-                <h2>Modded Services</h2>
-                <div class="auto-grid" id="shop-grid">
-                    <!-- Auto-populated via JS -->
-                    <div class="skeleton" style="height: 300px"></div>
-                    <div class="skeleton" style="height: 300px"></div>
-                </div>
-            </section>
-        </main>
+    <!-- Cybernetic HUD -->
+    <div class="cyber-hud">
+        <div style="animation: glitch 650ms infinite">[SYSTEM ACTIVE]</div>
+        <div>▼ FIRMWARE 9.00 ▼</div>
+        <div>▼ GOLDHEN 2.3b ▼</div>
+        <div>▼ LIVE PKG FEED ▼</div>
     </div>
 
-    <script>
-        // Theme Engine
-        document.querySelectorAll('[data-theme]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.documentElement.setAttribute('data-theme', btn.dataset.theme);
-                localStorage.setItem('theme', btn.dataset.theme);
-            });
-        });
+    <!-- Main Neural Grid -->
+    <div class="main-grid">
+        <!-- AI Assistant -->
+        <div class="ai-panel">
+            <h2>▲ MODDING AI v3.14</h2>
+            <div id="ai-terminal"></div>
+            <input type="text" placeholder="Ask about jailbreaks..." 
+                   style="background: #000; color: #0f0; border: 1px solid var(--matrix-green); padding: 0.5rem;">
+        </div>
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        <!-- Core Interface -->
+        <main class="main-interface">
+            <div style="border: 1px solid var(--neon-purple); padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="color: var(--cyber-yellow)">PS4 ULTIMATE TOOLKIT</h2>
+                <div class="tool-grid"></div>
+            </div>
 
-        // Dynamic Content Loader (Example - Replace with real API calls)
-        function populateContent() {
-            const toolsData = [
-                { 
-                    name: "GoldHEN 2.3", 
-                    desc: "Ultimate PS4 Jailbreak Payload",
-                    link: "https://github.com/GoldHEN/GoldHEN"
-                },
-                {
-                    name: "MIRA Project",
-                    desc: "Kernel-level Toolkit",
-                    link: "https://github.com/OpenOrbis/mira-project"
-                }
-            ];
+            <div style="border: 1px solid var(--matrix-green); padding: 2rem;">
+                <h2 style="color: var(--neon-purple)">LIVE MODDING FEED</h2>
+                <div class="hack-stream"></div>
+            </div>
+        </main>
 
-            const toolsGrid = document.getElementById('tools-grid');
-            toolsGrid.innerHTML = toolsData.map(tool => `
-                <div class="card">
-                    <h3>${tool.name}</h3>
-                    <p>${tool.desc}</p>
-                    <a href="${tool.link}" target="_blank">GitHub →</a>
-                </div>
-            `).join('');
-        }
+        <!-- Right Panel -->
+        <div class="hack-feed">
+            <h2>▲ REAL-TIME EXPLOITS</h2>
+            <div class="cve-list"></div>
+        </div>
+    </div>
 
-        // Initial load
-        setTimeout(populateContent, 1500); // Simulate API delay
-    </script>
+<script>
+// AI-Powered Modding Assistant
+class CyberAI {
+    constructor() {
+        this.responses = {
+            "jailbreak 9.00": "PPPwn exploit active. Load GoldHEN via USB.",
+            "install pkg": "Use Remote PKG Installer via port 1337",
+            "brick recovery": "Boot safe mode → Reinitialize system"
+        };
+    }
+
+    respond(query) {
+        return this.responses[query.toLowerCase()] || 
+               `Command "${query}" not found in darknet databases`;
+    }
+}
+
+// Live Exploit Feed
+const exploitFeed = [
+    "CVE-2024-1337: PS5 Kernel R/W Achieved",
+    "MIRA Project: New HV Exploit Released",
+    "GoldHEN v3.0: Linux Loader Added"
+];
+
+// Initialize CyberOS
+const ai = new CyberAI();
+document.querySelector('input').addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') {
+        const response = ai.respond(e.target.value);
+        document.getElementById('ai-terminal').innerHTML += 
+            `<div>> ${e.target.value}</div><div style="color: ${'#00ff88'}">${response}</div>`;
+        e.target.value = '';
+    }
+});
+
+// Matrix-style background effect
+const canvas = document.createElement('canvas');
+document.body.prepend(canvas);
+const ctx = canvas.getContext('2d');
+canvas.style.position = 'fixed';
+canvas.style.zIndex = '-1';
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Rain code animation
+let drops = [];
+class Drop {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -20;
+        this.speed = Math.random() * 3 + 2;
+        this.char = String.fromCharCode(0x30A0 + Math.random() * 96);
+    }
+    draw() {
+        ctx.fillStyle = '#0f0';
+        ctx.fillText(this.char, this.x, this.y);
+        this.y += this.speed;
+        if(this.y > canvas.height) this.reset();
+    }
+}
+
+for(let i = 0; i < 100; i++) drops.push(new Drop());
+
+(function animate() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '15px monospace';
+    drops.forEach(drop => drop.draw());
+    requestAnimationFrame(animate);
+})();
+</script>
 </body>
 </html>
