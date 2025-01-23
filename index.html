@@ -3,203 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>articulate - Social Innovation Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>Nexus Mods Hub | PS3/PS4/PS5/PC Modding Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Primary Colors */
-            --black: #1c1c1b;
-            --white: #ffffff;
-            --health: #ef9a5c;
-            --enterprise: #53aec9;
-            --places: #aac056;
-            --connectivity: #776cca;
-            --artivism: #e5608e;
-            
-            /* Secondary Colors */
-            --secondary1: #eb8e75;
-            --secondary2: #ea6548;
-            --secondary3: #f4cc74;
+            --neon-blue: #00f3ff;
+            --hacker-red: #ff003c;
+            --cyber-purple: #bc13fe;
+            --dark-bg: #0a0a12;
+            --card-bg: #1a1a2f;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Orbitron', sans-serif;
         }
 
         body {
-            background: var(--white);
-            color: var(--black);
+            background: var(--dark-bg);
+            color: var(--neon-blue);
+            overflow-x: hidden;
         }
 
-        /* Header with Core Marque */
+        /* Cyber Header */
         .header {
             padding: 2rem;
-            background: var(--black);
-            position: relative;
+            background: linear-gradient(45deg, #1a1a2f 0%, #0a0a12 100%);
+            border-bottom: 3px solid var(--cyber-purple);
+            text-align: center;
         }
 
-        .marque {
-            width: 200px;
-            margin: 0 auto;
-            padding: 20px; /* Exclusion zone */
+        .logo {
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px var(--neon-blue);
         }
 
-        /* Pillar Navigation */
-        .pillar-nav {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+        /* Platform Navigation */
+        .platform-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
             position: sticky;
             top: 0;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 100;
         }
 
-        .pillar-button {
-            padding: 1.5rem;
-            border: none;
-            color: var(--white);
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: filter 0.3s;
-        }
-
-        .pillar-button:hover {
-            filter: brightness(1.1);
-        }
-
-        /* Sections */
-        .pillar-section {
-            padding: 4rem 2rem;
-            min-height: 100vh;
-            display: none;
-        }
-
-        .pillar-section.active {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-
-        /* Brand Typography */
-        h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 65ch;
-        }
-
-        /* Brand Buttons */
-        .articulate-button {
+        .platform-btn {
+            background: none;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
             padding: 1rem 2rem;
-            border: none;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-            position: relative;
-            margin: 1rem 0;
+            border-radius: 30px;
             cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .articulate-button::after {
-            content: '→';
-            margin-left: 0.5rem;
+        .platform-btn.active {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-blue);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Mod Grid */
+        .mod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1500px;
+            margin: 0 auto;
         }
 
-        /* Organic Shapes */
-        .organic-shape {
+        .mod-card {
+            background: var(--card-bg);
+            border: 1px solid var(--cyber-purple);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .mod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+        }
+
+        .mod-card::before {
+            content: '';
             position: absolute;
-            opacity: 0.1;
-            z-index: -1;
-            animation: float 20s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                var(--cyber-purple), 
+                transparent);
+            animation: scan 6s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(10px, 10px); }
-            50% { transform: translate(-10px, 15px); }
-            75% { transform: translate(5px, -5px); }
+        /* Services Marketplace */
+        .services-section {
+            padding: 2rem;
+            border-top: 3px solid var(--hacker-red);
+            margin: 4rem 0;
+        }
+
+        .service-card {
+            background: linear-gradient(45deg, #2a2a4f, #1a1a2f);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--neon-blue);
+        }
+
+        /* Tutorial Section */
+        .tutorial-accordion {
+            border: 1px solid var(--cyber-purple);
+            margin: 2rem 0;
+        }
+
+        /* Status Feed */
+        .status-feed {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10, 10, 18, 0.9);
+            padding: 1rem;
+            border: 1px solid var(--hacker-red);
+        }
+
+        @keyframes scan {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <img src="articulate-marque.svg" alt="articulate logo" class="marque">
+        <div class="logo">NEXUS MODS HUB</div>
     </header>
 
-    <nav class="pillar-nav">
-        <button class="pillar-button" style="background: var(--health);" data-section="health">Health & Wellbeing</button>
-        <button class="pillar-button" style="background: var(--enterprise);" data-section="enterprise">Employability</button>
-        <button class="pillar-button" style="background: var(--places);" data-section="places">Places & Spaces</button>
-        <button class="pillar-button" style="background: var(--connectivity);" data-section="connectivity">Connectivity</button>
-        <button class="pillar-button" style="background: var(--artivism);" data-section="artivism">Artivism</button>
+    <nav class="platform-nav">
+        <button class="platform-btn active" data-platform="ps4">PS4</button>
+        <button class="platform-btn" data-platform="ps3">PS3</button>
+        <button class="platform-btn" data-platform="ps5">PS5</button>
+        <button class="platform-btn" data-platform="pc">PC</button>
     </nav>
 
     <main>
-        <section id="health" class="pillar-section" style="background: var(--health);">
-            <h1>Health & Wellbeing Initiatives</h1>
-            <p>Creating sustainable health solutions through community engagement...</p>
-            <button class="articulate-button" style="background: var(--secondary1);">Learn More →</button>
+        <!-- PS4 Mods Section -->
+        <section class="mod-grid" id="ps4-section">
+            <article class="mod-card">
+                <h3>GoldHEN 2.3.1</h3>
+                <p>Latest PS4 jailbreak package with FTP and debug tools</p>
+                <div class="meta">
+                    <span class="downloads">⬇️ 142,389</span>
+                    <span class="version">v2.3.1</span>
+                </div>
+                <button class="download-btn">Download</button>
+            </article>
+            
+            <!-- Add 15+ mod cards -->
         </section>
 
-        <!-- Repeat sections for other pillars -->
+        <!-- Services Marketplace -->
+        <section class="services-section">
+            <h2>Modding Services</h2>
+            <div class="service-card">
+                <h3>BO3 God Mode Setup</h3>
+                <p>Complete modded account setup with prestige 9999</p>
+                <div class="price">£25.00</div>
+                <button class="buy-btn">Purchase</button>
+            </div>
+            <!-- Add 10+ service cards -->
+        </section>
+
+        <!-- Tutorial Section -->
+        <section class="tutorial-accordion">
+            <div class="tutorial-step">
+                <h3>PS4 Jailbreak Guide</h3>
+                <div class="content">
+                    <p>Step-by-step instructions for firmware 9.00</p>
+                    <!-- Detailed tutorial content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Status Feed -->
+        <div class="status-feed">
+            <h4>System Status</h4>
+            <div id="psn-status">PSN: Online</div>
+            <div id="jailbreak-status">Jailbreak Tools: Stable</div>
+        </div>
     </main>
 
     <script>
-        // Pillar Navigation System
-        document.querySelectorAll('.pillar-button').forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active classes
-                document.querySelectorAll('.pillar-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show selected section
-                const sectionId = button.dataset.section;
-                document.getElementById(sectionId).classList.add('active');
-                
-                // Update URL
-                window.location.hash = sectionId;
+        // Platform Switching
+        document.querySelectorAll('.platform-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Add content switching logic
             });
         });
 
-        // Initialize first section
-        document.querySelector('.pillar-button').click();
-
-        // Generate Organic Shapes
-        function createOrganicShapes() {
-            const shapes = ['M10 80 Q 95 10 180 80', 'M50 10 Q 20 90 150 50', 'M30 30 Q 100 100 170 30'];
-            const colors = [var(--secondary1), var(--secondary2), var(--secondary3)];
-            
-            shapes.forEach((path, index) => {
-                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 200 100");
-                svg.innerHTML = `<path d="${path}" fill="${colors[index]}" />`;
-                svg.classList.add('organic-shape');
-                document.body.appendChild(svg);
-            });
+        // Live Status Updates
+        async function updateStatus() {
+            try {
+                const response = await fetch('https://status.playstation.com/data/statuses/region/SCEE.json');
+                const data = await response.json();
+                document.getElementById('psn-status').textContent = 
+                    `PSN: ${data.status.indicator.toUpperCase()}`;
+            } catch (error) {
+                console.error('Status update failed:', error);
+            }
         }
-        createOrganicShapes();
+        setInterval(updateStatus, 300000);
+        updateStatus();
+
+        // Tutorial Accordion
+        document.querySelectorAll('.tutorial-step').forEach(step => {
+            step.addEventListener('click', () => {
+                step.classList.toggle('active');
+            });
+        });
+
+        // Shopping Cart System
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const service = {
+                    name: btn.parentElement.querySelector('h3').textContent,
+                    price: parseFloat(btn.parentElement.querySelector('.price').textContent.replace('£', ''))
+                };
+                cart.push(service);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Added to cart!');
+            });
+        });
     </script>
 </body>
 </html>
