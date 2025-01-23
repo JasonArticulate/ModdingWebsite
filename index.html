@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modding Nexus</title>
+    <title>Modding Matrix</title>
     <style>
         :root {
-            --nav-bg: #2d2d2d;
-            --accent: #7289da;
-            --text: #e0e0e0;
+            --nav-width: 280px;
+            --gap: 2rem;
+            --radius: 12px;
+            --bg: #0d0d0d;
+            --text: #e6e6e6;
+            --accent: #00ff88;
         }
 
         * {
@@ -18,263 +21,196 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui;
+            font-family: 'Inter', system-ui;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Perfect Layout System */
+        .app-grid {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: var(--nav-width) 1fr;
             min-height: 100vh;
-            background: #1a1a1a;
-            color: var(--text);
+            gap: var(--gap);
+            padding-right: var(--gap);
         }
 
-        /* Left Navigation */
-        .sidebar {
-            background: var(--nav-bg);
-            padding: 2rem;
+        /* Smart Navigation */
+        .nav-wrapper {
             position: fixed;
-            width: 250px;
-            height: 100%;
-            border-right: 3px solid var(--accent);
+            width: var(--nav-width);
+            height: 100vh;
+            padding: 2rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
         }
 
-        .nav-logo {
-            width: 100%;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 5px var(--accent));
-        }
-
-        .nav-links {
-            list-style: none;
-        }
-
-        .nav-link {
-            margin: 1rem 0;
-            transition: transform 0.3s;
-        }
-
-        .nav-link a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 0.8rem;
-            display: block;
-            border-radius: 5px;
-        }
-
-        .nav-link a:hover {
-            background: var(--accent);
-        }
-
-        /* Main Content */
         .main-content {
-            padding: 3rem;
             max-width: 1200px;
+            margin-left: calc(var(--nav-width) + var(--gap));
+            padding: 3rem 0;
         }
 
         /* Dynamic Content Cards */
-        .content-card {
-            background: #252525;
-            border-radius: 10px;
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius);
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid #3d3d3d;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .card-header {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        /* PS4 Tools Grid */
-        .firmware-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .firmware-card {
-            background: #333;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-        }
-
-        /* Shop Items */
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .shop-item {
-            background: #252525;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .shop-item:hover {
+        .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.1);
         }
 
-        .price-tag {
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin: 1rem 0;
+        /* Auto-Responsive Grid */
+        .auto-grid {
+            --min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+            gap: 2rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body {
+        /* Theme System */
+        [data-theme="dark"] { --bg: #0d0d0d; --text: #e6e6e6; }
+        [data-theme="light"] { --bg: #f8f9fa; --text: #1a1a1a; }
+        [data-theme="cyber"] { --bg: #000; --text: #0f0; --accent: #ff0; }
+
+        /* Loading States */
+        .skeleton {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 1200px) {
+            .app-grid {
                 grid-template-columns: 1fr;
+                padding: 0;
             }
 
-            .sidebar {
-                position: relative;
+            .nav-wrapper {
+                position: static;
                 width: 100%;
                 height: auto;
                 border-right: none;
-                border-bottom: 3px solid var(--accent);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
             .main-content {
-                padding: 2rem 1rem;
+                margin-left: 0;
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="sidebar">
-        <img src="https://i.ibb.co/0jQ7ZtG/modding-logo.png" alt="Modding Nexus" class="nav-logo">
-        <ul class="nav-links">
-            <li class="nav-link"><a href="#home">🏠 Home</a></li>
-            <li class="nav-link"><a href="#ps4">🎮 PS4 Jailbreak</a></li>
-            <li class="nav-link"><a href="#shop">💎 Modded Services</a></li>
-            <li class="nav-link"><a href="#resources">📚 Resources</a></li>
-            <li class="nav-link"><a href="#contact">📧 Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Home Section -->
-        <section id="home" class="content-card">
-            <h1 class="card-header">Welcome to Modding Nexus</h1>
-            <p>Your ultimate resource for console modding, game customization, and premium services.</p>
-            <div class="firmware-grid" style="margin-top: 2rem;">
-                <div class="firmware-card">
-                    <h3>Latest Updates</h3>
-                    <p>• GoldHEN 2.3 Released<br>
-                    • New 9.00 Exploit Research<br>
-                    • PS5 Kernel Access Progress</p>
-                </div>
-                <div class="firmware-card">
-                    <h3>Featured Tool</h3>
-                    <p>MIRA Project - Advanced kernel-level toolkit for PS4 modding</p>
-                    <a href="https://github.com/OpenOrbis/mira-project" style="color: var(--accent);">GitHub →</a>
+    <div class="app-grid">
+        <!-- Navigation -->
+        <nav class="nav-wrapper">
+            <div class="logo">MOD</div>
+            <div class="nav-section">
+                <h3>Core Sections</h3>
+                <div class="nav-item active">Dashboard</div>
+                <div class="nav-item">PS4 Toolkit</div>
+                <div class="nav-item">Modded Services</div>
+                <div class="nav-item">Community</div>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Theme Engine</h3>
+                <div class="theme-switcher">
+                    <button data-theme="dark">Dark</button>
+                    <button data-theme="light">Light</button>
+                    <button data-theme="cyber">Cyber</button>
                 </div>
             </div>
-        </section>
+        </nav>
 
-        <!-- PS4 Jailbreak Section -->
-        <section id="ps4" class="content-card">
-            <h2 class="card-header">PS4 Jailbreak Toolkit</h2>
-            <div class="firmware-grid">
-                <div class="firmware-card">
-                    <h3>4.05 Tools</h3>
-                    <ul>
-                        <li><a href="https://github.com/stooged/AppToUsb-405">AppToUSB v17</a></li>
-                        <li><a href="https://github.com/xvortex/ps4-hen-vtx/tree/1.3">HEN v1.3</a></li>
-                        <li><a href="https://github.com/Cryptogenic/PS4-4.05-Kernel-Exploit">Original Exploit</a></li>
-                    </ul>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard -->
+            <section class="card">
+                <h2>Live Modding Status</h2>
+                <div class="auto-grid" id="status-grid">
+                    <!-- Auto-populated via JS -->
+                    <div class="skeleton" style="height: 100px"></div>
+                    <div class="skeleton" style="height: 100px"></div>
                 </div>
-                <div class="firmware-card">
-                    <h3>5.05 Essentials</h3>
-                    <ul>
-                        <li><a href="https://github.com/stooged/AppToUsb-50X">AppToUSB v3</a></li>
-                        <li><a href="https://github.com/xvortex/ps4-dumper-vtx">Dumper v1.8</a></li>
-                        <li><a href="https://github.com/valentinbreiz/PS4-Linux-Loader/tree/5.05">Linux Loader</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Shop Section -->
-        <section id="shop" class="content-card">
-            <h2 class="card-header">Premium Services</h2>
-            <div class="shop-grid">
-                <div class="shop-item">
-                    <h3>BO3 Modded Account</h3>
-                    <p>Prestige 9999<br>Unlock All<br>Custom Classes</p>
-                    <div class="price-tag">£15</div>
-                    <button style="background: var(--accent); border: none; padding: 0.8rem 2rem; border-radius: 5px; cursor: pointer;">Buy Now</button>
+            <!-- Dynamic Tools Grid -->
+            <section class="card">
+                <h2>PS4 Exploit Toolkit</h2>
+                <div class="auto-grid" id="tools-grid">
+                    <!-- Auto-populated via JS -->
+                    <div class="skeleton" style="height: 200px"></div>
+                    <div class="skeleton" style="height: 200px"></div>
+                    <div class="skeleton" style="height: 200px"></div>
                 </div>
-                <div class="shop-item">
-                    <h3>Advanced Warfare</h3>
-                    <p>Max Rank<br>Modded Clantag<br>Unlimited Resources</p>
-                    <div class="price-tag">£10</div>
-                    <button style="background: var(--accent); border: none; padding: 0.8rem 2rem; border-radius: 5px; cursor: pointer;">Buy Now</button>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Resources Section -->
-        <section id="resources" class="content-card">
-            <h2 class="card-header">Community Resources</h2>
-            <div class="firmware-grid">
-                <div class="firmware-card">
-                    <h3>Communities</h3>
-                    <ul>
-                        <li><a href="https://www.psxhax.com/">PSXHAX</a></li>
-                        <li><a href="https://wololo.net/">Wololo.net</a></li>
-                        <li><a href="https://www.reddit.com/r/ps4homebrew">r/ps4homebrew</a></li>
-                    </ul>
+            <!-- Shop -->
+            <section class="card">
+                <h2>Modded Services</h2>
+                <div class="auto-grid" id="shop-grid">
+                    <!-- Auto-populated via JS -->
+                    <div class="skeleton" style="height: 300px"></div>
+                    <div class="skeleton" style="height: 300px"></div>
                 </div>
-                <div class="firmware-card">
-                    <h3>GitHub Repos</h3>
-                    <ul>
-                        <li><a href="https://github.com/GoldHEN/GoldHEN">GoldHEN</a></li>
-                        <li><a href="https://github.com/OpenOrbis/mira-project">MIRA Project</a></li>
-                        <li><a href="https://github.com/stooged">Stooged's Tools</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="content-card">
-            <h2 class="card-header">Get in Touch</h2>
-            <form style="display: grid; gap: 1rem;">
-                <input type="text" placeholder="Name" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;">
-                <input type="email" placeholder="Email" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;">
-                <textarea rows="4" placeholder="Message" style="padding: 0.8rem; border-radius: 5px; border: 1px solid #444; background: #333; color: white;"></textarea>
-                <button type="submit" style="background: var(--accent); color: white; padding: 1rem; border: none; border-radius: 5px; cursor: pointer;">Send Message</button>
-            </form>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
     <script>
-        // Dynamic Content Loading
-        document.querySelectorAll('.nav-link a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                document.querySelectorAll('.content-card').forEach(card => {
-                    card.style.display = 'none';
-                });
-                document.getElementById(targetId).style.display = 'block';
-                window.scrollTo(0, 0);
+        // Theme Engine
+        document.querySelectorAll('[data-theme]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.documentElement.setAttribute('data-theme', btn.dataset.theme);
+                localStorage.setItem('theme', btn.dataset.theme);
             });
         });
 
-        // Show home section by default
-        document.querySelectorAll('.content-card').forEach(card => {
-            card.style.display = 'none';
-        });
-        document.getElementById('home').style.display = 'block';
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Dynamic Content Loader (Example - Replace with real API calls)
+        function populateContent() {
+            const toolsData = [
+                { 
+                    name: "GoldHEN 2.3", 
+                    desc: "Ultimate PS4 Jailbreak Payload",
+                    link: "https://github.com/GoldHEN/GoldHEN"
+                },
+                {
+                    name: "MIRA Project",
+                    desc: "Kernel-level Toolkit",
+                    link: "https://github.com/OpenOrbis/mira-project"
+                }
+            ];
+
+            const toolsGrid = document.getElementById('tools-grid');
+            toolsGrid.innerHTML = toolsData.map(tool => `
+                <div class="card">
+                    <h3>${tool.name}</h3>
+                    <p>${tool.desc}</p>
+                    <a href="${tool.link}" target="_blank">GitHub →</a>
+                </div>
+            `).join('');
+        }
+
+        // Initial load
+        setTimeout(populateContent, 1500); // Simulate API delay
     </script>
 </body>
 </html>
