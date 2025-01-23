@@ -3,35 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modding Pro - Resources & Services</title>
+  <title>Modding Nexus - Futuristic Modding Hub</title>
   <style>
     :root {
-      --primary: #0056b3;
-      --accent: #ff5722;
-      --bg: #f8f9fa;
-      --text: #1a1a1a;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --primary: #00ff88; /* Neon Green */
+      --accent: #ff003c; /* Neon Pink */
+      --bg: #0d0d0d; /* Dark Background */
+      --text: #e0e0e0; /* Light Text */
+      --card-bg: #1a1a1a; /* Dark Card Background */
+      --shadow: 0 0 15px rgba(0, 255, 136, 0.2); /* Neon Glow */
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', system-ui;
+      font-family: 'Roboto Mono', monospace;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: 250px 1fr;
-      min-height: 100vh;
-    }
-
-    /* Sidebar */
+    /* Futuristic Navigation */
     .sidebar {
-      background: white;
+      background: var(--card-bg);
       padding: 2rem;
-      border-right: 1px solid #e0e0e0;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: var(--shadow);
     }
 
@@ -39,6 +34,7 @@
       color: var(--primary);
       margin-bottom: 2rem;
       font-size: 1.5rem;
+      text-shadow: 0 0 5px var(--primary);
     }
 
     .nav-item {
@@ -49,7 +45,7 @@
     }
 
     .nav-item:hover {
-      background: var(--bg);
+      background: rgba(0, 255, 136, 0.1);
       transform: translateX(5px);
     }
 
@@ -81,11 +77,13 @@
       color: white;
       border-radius: 12px;
       margin-bottom: 3rem;
+      box-shadow: var(--shadow);
     }
 
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--primary);
     }
 
     .hero p {
@@ -102,7 +100,7 @@
     }
 
     .service-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 12px;
       padding: 2rem;
       box-shadow: var(--shadow);
@@ -111,22 +109,23 @@
 
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
     }
 
     .service-card h3 {
       margin-top: 0;
       color: var(--accent);
       font-size: 1.5rem;
+      text-shadow: 0 0 5px var(--accent);
     }
 
     .service-card p {
-      color: #666;
+      color: #999;
     }
 
     .service-card button {
       background: var(--primary);
-      color: white;
+      color: var(--bg);
       border: none;
       padding: 0.8rem 1.5rem;
       border-radius: 8px;
@@ -134,10 +133,12 @@
       width: 100%;
       margin-top: 1rem;
       transition: background 0.3s;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: bold;
     }
 
     .service-card button:hover {
-      background: #004080;
+      background: #00cc77;
     }
 
     /* Live Chat Widget */
@@ -145,7 +146,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: white;
+      background: var(--card-bg);
       border-radius: 12px;
       box-shadow: var(--shadow);
       width: 300px;
@@ -154,9 +155,10 @@
 
     .chat-header {
       background: var(--primary);
-      color: white;
+      color: var(--bg);
       padding: 1rem;
       font-size: 1.1rem;
+      text-align: center;
     }
 
     .chat-body {
@@ -175,13 +177,15 @@
     .chat-input input {
       flex-grow: 1;
       padding: 0.5rem;
-      border: 1px solid #e0e0e0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text);
     }
 
     .chat-input button {
       background: var(--accent);
-      color: white;
+      color: var(--bg);
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 8px;
@@ -196,7 +200,7 @@
 
       .sidebar {
         border-right: none;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .main-content {
@@ -208,12 +212,13 @@
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <!-- Sidebar -->
     <nav class="sidebar">
-      <h2>Modding Pro</h2>
+      <h2>Modding Nexus</h2>
       <div class="nav-item">
         <a href="#welcome" aria-current="page">🏠 Home</a>
       </div>
@@ -235,8 +240,8 @@
     <main class="main-content">
       <!-- Hero Section -->
       <section class="hero" id="welcome">
-        <h1>Welcome to Modding Pro</h1>
-        <p>Your ultimate resource for PS4 jailbreaking, game modding, and premium services.</p>
+        <h1>Welcome to Modding Nexus</h1>
+        <p>Your gateway to the future of console modding and game customization.</p>
       </section>
 
       <!-- PS4 Tools Section -->
@@ -335,7 +340,7 @@
   </div>
 
   <!-- Order Form Modal -->
-  <div id="order-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
+  <div id="order-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--card-bg); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
     <h2 id="order-title"></h2>
     <form id="order-form">
       <label for="psn-id">PSN ID:</label>
