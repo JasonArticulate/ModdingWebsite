@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Mods Hub</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #ff4757;
+            --background-color: #2d3436;
+            --text-color: #f1f2f6;
+            --card-bg: #34495e;
+            --button-bg: #ff4757;
+            --button-hover: #ff6b81;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+        }
+
+        .mod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .mod-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .mod-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mod-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mod-card p {
+            margin-bottom: 1rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: var(--button-hover);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .mod-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Game Mods Hub</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#bo3">BO3 Mods</a></li>
+                <li><a href="#mw2">MW2 Mods</a></li>
+                <li><a href="#mw3">MW3 Mods</a></li>
+                <li><a href="#pc">PC Mods</a></li>
+                <li><a href="#ps4">PS4 Mods</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <h2>Welcome to Game Mods Hub</h2>
+            <p>Your one-stop destination for the best mods for BO3, MW2, MW3, PC, and PS4 games. Download and enjoy!</p>
+        </section>
+
+        <!-- BO3 Mods Section -->
+        <section id="bo3">
+            <h2>BO3 Mods</h2>
+            <div class="mod-grid">
+                <div class="mod-card">
+                    <h3>Zombies Chronicles</h3>
+                    <p>Enhanced zombies experience with new maps and weapons.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+                <div class="mod-card">
+                    <h3>Multiplayer Overhaul</h3>
+                    <p>Revamped multiplayer with new modes and weapons.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MW2 Mods Section -->
+        <section id="mw2">
+            <h2>MW2 Mods</h2>
+            <div class="mod-grid">
+                <div class="mod-card">
+                    <h3>Realism Mod</h3>
+                    <p>Adds realistic damage and physics to MW2.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+                <div class="mod-card">
+                    <h3>Custom Maps Pack</h3>
+                    <p>New maps for MW2 multiplayer.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MW3 Mods Section -->
+        <section id="mw3">
+            <h2>MW3 Mods</h2>
+            <div class="mod-grid">
+                <div class="mod-card">
+                    <h3>Survival Mode+</h3>
+                    <p>Enhanced survival mode with new enemies and challenges.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+                <div class="mod-card">
+                    <h3>Weapon Pack</h3>
+                    <p>Adds new weapons to MW3 multiplayer.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PC Mods Section -->
+        <section id="pc">
+            <h2>PC Mods</h2>
+            <div class="mod-grid">
+                <div class="mod-card">
+                    <h3>Graphics Enhancer</h3>
+                    <p>Improves graphics for PC versions of BO3, MW2, and MW3.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+                <div class="mod-card">
+                    <h3>FPS Booster</h3>
+                    <p>Optimizes performance for low-end PCs.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PS4 Mods Section -->
+        <section id="ps4">
+            <h2>PS4 Mods</h2>
+            <div class="mod-grid">
+                <div class="mod-card">
+                    <h3>Zombies Unlocker</h3>
+                    <p>Unlocks all zombies content for BO3 on PS4.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+                <div class="mod-card">
+                    <h3>Custom Classes</h3>
+                    <p>Adds custom classes to MW2 and MW3 on PS4.</p>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Game Mods Hub. All rights reserved. Not affiliated with Activision or any game developers.</p>
+    </footer>
+</body>
+</html>
